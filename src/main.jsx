@@ -4,6 +4,10 @@ import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router' 
 import Mainlayout from './Layout/Mainlayout.jsx'
+import Register from './Sign/Register.jsx'
+import Home from './Pages/Home.jsx'
+import AuthProvider from './Auth/AuthProvider.jsx'
+import LogIn from './Sign/LogIn.jsx'
 
 
 
@@ -12,15 +16,35 @@ import Mainlayout from './Layout/Mainlayout.jsx'
     
    {
     path:'/',
-    element:<Mainlayout></Mainlayout> 
-   }
- ])
+    element:<Mainlayout></Mainlayout> ,children: [
+   
+       {
+        index:true,
+        element:<Home></Home>
+       } ,
+       {
+        path:'/register',
+        element:<Register></Register>
+       }, 
+       
+       {
+        path:'/login',
+        element:<LogIn></LogIn> 
+       }
+ 
+    ]} 
+   
+  
+ ]) 
 
 
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router} ></RouterProvider>
+  <StrictMode> 
+    <AuthProvider>
+ <RouterProvider router={router} ></RouterProvider>
+    </AuthProvider>
+   
   </StrictMode>,
 )
