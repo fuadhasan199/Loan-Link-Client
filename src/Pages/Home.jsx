@@ -1,9 +1,11 @@
 import React from 'react';
+import Banar from '../Extra-Components/Banar';
 
 const Home = () => {
     return (
-        <div>
-this is home        </div>
+        <div className='container mx-auto '>
+      <Banar></Banar>  
+ </div>
     );
 };
 

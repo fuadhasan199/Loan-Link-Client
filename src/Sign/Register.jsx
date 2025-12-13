@@ -1,5 +1,7 @@
 import React from 'react'; 
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+
 import { Link } from 'react-router';
 
 
@@ -10,7 +12,14 @@ const Register = () => {
 
 
    const handleRegister=(data)=>{
-       console.log(data)
+       console.log(data) 
+
+       try{
+        toast.success('Successfully Register')
+       }
+      catch{
+        toast.error('Register failed')
+      }
    }
 
 
@@ -89,7 +98,7 @@ const Register = () => {
           <p>Already have an account? <Link to={'/login'} className='text-red-600'>Login</Link></p>
           
           <div className="flex flex-col">
-   <button className="btn btn-primary mt-4 w-full">Register</button>
+   <button className="btn btn-primary mt-4 w-full" >Register</button>
           <button className="btn btn-primary mt-4 w-full">Register with Google</button> 
 
           </div>
@@ -102,7 +111,8 @@ const Register = () => {
 
       </div>
     </div>
-  </div>
+  </div> 
+
 </div>
     );
 };

@@ -19,8 +19,8 @@ import LogIn from './Sign/LogIn.jsx'
     element:<Mainlayout></Mainlayout> ,children: [
    
        {
-        index:true,
-        element:<Home></Home>
+        index:true, 
+        element:<Home></Home> 
        } ,
        {
         path:'/register',
