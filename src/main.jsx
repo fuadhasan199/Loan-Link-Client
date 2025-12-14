@@ -8,6 +8,7 @@ import Register from './Sign/Register.jsx'
 import Home from './Pages/Home.jsx'
 import AuthProvider from './Auth/AuthProvider.jsx'
 import LogIn from './Sign/LogIn.jsx'
+import AllLoans from './Pages/AllLoans.jsx'
 
 
 
@@ -20,8 +21,15 @@ import LogIn from './Sign/LogIn.jsx'
    
        {
         index:true, 
-        element:<Home></Home> 
-       } ,
+        element:<Home></Home>,
+        loader:()=>fetch('http://localhost:3000/availableloan')
+       } , 
+       {
+          path:'/all-loans',
+          element:<AllLoans></AllLoans>
+       },
+
+
        {
         path:'/register',
         element:<Register></Register>

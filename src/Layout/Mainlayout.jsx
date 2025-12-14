@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 
 const Mainlayout = () => {
     return (
-        <div className='flex flex-col min-h-screen  '> 
+        <div className='flex flex-col min-h-screen   '> 
          <div className="mt-2">
           <Navbar></Navbar> 
          </div>
@@ -23,4 +23,4 @@ const Mainlayout = () => {
     );
 };
 
-export default Mainlayout;
+export default Mainlayout; 

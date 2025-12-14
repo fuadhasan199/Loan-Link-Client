@@ -1,5 +1,6 @@
 import React from 'react'; 
 import logo from "../../public/Loan-Link-Logo.jpg"
+import { Link, NavLink } from 'react-router';
 
 const Navbar = () => {
     return ( 
@@ -15,30 +16,24 @@ const Navbar = () => {
         <li><a>Item 1</a></li>
         <li> 
           
-          <a>Parent</a>
+         
           <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+            <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Home</NavLink></li>
+            <li><NavLink to={'/all-loans'}className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All loans</NavLink></li>
           </ul>
         </li> 
-        <li><a>Item 3</a></li> 
+      
       </ul>
     </div>
       <img src={logo} alt="" className='w-[65px] rounded-xl' />
   </div>
-  <div className="navbar-center hidden lg:flex">
+  <div className="navbar-center hidden lg:flex"> 
     <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
+      <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''} >Home</NavLink></li>
       <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2 bg-base-100 w-40 z-1">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
+          <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All Loans</NavLink>
       </li>
-      <li><a>Item 3</a></li>
+       
     </ul>
   </div>
   <div className="navbar-end">
