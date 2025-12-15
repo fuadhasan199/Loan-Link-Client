@@ -2,21 +2,41 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {  Link } from 'react-router';
+import UseAuth from '../Auth/UseAuth';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const LogIn = () => { 
-  const {register,handleSubmit,formState: { errors }}=useForm()  
+  const {register,handleSubmit,formState: { errors }}=useForm()   
+
+  const {logInUser,googleSignIn}=UseAuth() 
+
+ 
 
   const handleLogin=(data)=>{
-      console.log(data) 
+    
 
-      try{
+      try{ 
+        const result=logInUser(data.email,data.password) 
+        console.log(result.user)
  toast.success('successfully Login') 
       }
    catch{
   toast.error("Login failed")
    }
     
-  }
+  } 
+
+  const handleGoogleLogIn=async()=>{
+    try{
+     const result=await googleSignIn()
+      toast.success('successfully Login')
+    } 
+    catch(error){
+      toast.error(error.message)
+    }
+  } 
+
+  
 
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -45,7 +65,7 @@ const LogIn = () => {
           </div> 
           <div className='flex flex-col'>
       <button className="btn btn-primary mt-4">Login</button> 
-           <button className="btn btn-primary mt-4">Login With Google</button>
+           <button onClick={handleGoogleLogIn} className="btn btn-primary mt-4">Login With Google</button>
           </div>
     
         </form>

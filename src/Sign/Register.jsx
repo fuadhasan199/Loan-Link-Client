@@ -3,24 +3,43 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 import { Link } from 'react-router';
+import UseAuth from '../Auth/UseAuth';
 
 
 const Register = () => { 
   const {  register,
     handleSubmit, formState: { errors }}=useForm() 
 
+        
+    const {registerUser,googleSignIn}=UseAuth()
 
 
-   const handleRegister=(data)=>{
-       console.log(data) 
 
-       try{
+   const handleRegister=async(data)=>{
+      
+
+       try{ 
+      
+     const result=await registerUser(data.email,data.password) 
+     console.log(result.user)
+
         toast.success('Successfully Register')
        }
-      catch{
-        toast.error('Register failed')
+      catch(error){
+        toast.error(error.message)
       }
-   }
+   } 
+ 
+const handleGoogleSignIn = async () => {
+  try {
+    const result = await googleSignIn();
+    console.log(result.user);
+    toast.success("Google sign-in successful");
+  } catch (error) {
+    toast.error(error.message);
+  }
+};
+
 
 
 
@@ -81,10 +100,10 @@ const Register = () => {
             value:6,
             message:'password must be at leasr 6 characters'
           },
-         pattern:{
-          value:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-          message:'password must contain at least one uppercase letter and one lowercase letter'
-         }
+        pattern: {
+  value: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
+  message: "Password must contain uppercase & lowercase letters"
+}
         
         
         })}
@@ -99,7 +118,7 @@ const Register = () => {
           
           <div className="flex flex-col">
    <button className="btn btn-primary mt-4 w-full" >Register</button>
-          <button className="btn btn-primary mt-4 w-full">Register with Google</button> 
+          <button onClick={handleGoogleSignIn} className="btn btn-primary mt-4 w-full">Register with Google</button> 
 
           </div>
 
