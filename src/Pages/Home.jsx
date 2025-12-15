@@ -58,7 +58,53 @@ const Home = () => {
 
     </div> 
     
-     <Feedback></Feedback>
+     <Feedback></Feedback> 
+
+     <div className="text-center mt-10">
+ 
+       <h1 className='text-center font-bold text-2xl'>Why Choose Us</h1>  
+       <hr className='mt-5'/>  
+
+       <div className="container mx-auto"> 
+        <ul className='space-y-6'> 
+
+
+          <li> 1️⃣ Fast & Transparent Process 
+
+We believe in doing business the right way. Our loan application process is simple, fully transparent, and free from hidden terms. You always know where you stand—no last-minute surprises.</li> 
+
+<li>2️⃣ Quick Approval & Disbursement
+
+Time matters. That’s why our streamlined verification system ensures faster approvals and prompt fund disbursement, so you can move forward without unnecessary delays.</li> 
+
+<li>3️⃣ Customer-First Approach
+
+We don’t just process applications—we support people. Our dedicated support team is always available to guide you, answer questions, and ensure a smooth experience from start to finish. </li> 
+
+<li>4️⃣ Flexible Loan Options
+
+Every financial need is different. We offer a range of loan products with flexible terms, designed to match your goals—whether it’s education, business, or personal growth.</li> 
+
+<li>5️⃣ Secure & Reliable Platform
+
+Trust is earned. Our platform uses secure systems and verified processes to protect your information and ensure every transaction is handled with care and responsibility.</li>
+
+<li>6️⃣ Proven Track Record
+
+We value long-term relationships over quick wins. Thousands of satisfied customers and consistent positive feedback reflect our commitment to reliability and service excellence.</li>
+
+
+
+        </ul>
+ 
+
+
+       </div>
+
+      
+
+
+     </div>
 
 
 
