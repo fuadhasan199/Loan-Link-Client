@@ -2,6 +2,7 @@ import React from 'react';
 import Banar from '../Extra-Components/Banar';
 import { useLoaderData } from 'react-router';
 import HowitWork from '../Extra-Components/HowitWork';
+import Feedback from '../Extra-Components/Feedback';
 
 
 const Home = () => { 
@@ -29,7 +30,7 @@ const Home = () => {
   <div className="card-body ">
     <h2 className="card-title "> 
       {loan.title}
-      <div className=" text-green-800 bg-green-100   p-1 font-semibold rounded-md ml-8">Loan limit : {loan.maxLoanLimit/1000} </div>
+      <div className=" text-green-800 bg-green-100   p-1 font-semibold rounded-md ml-4">Loan limit : {loan.maxLoanLimit/1000}k</div>
     </h2>
     <p>{loan.shortDesc}</p>
     <div className="card-actions justify-center mt-3">
@@ -42,7 +43,9 @@ const Home = () => {
         
     } 
     
-    <HowitWork></HowitWork>
+    <HowitWork></HowitWork> 
+
+  
 
 
 
@@ -53,7 +56,9 @@ const Home = () => {
 
 
 
-    </div>
+    </div> 
+    
+     <Feedback></Feedback>
 
 
 
