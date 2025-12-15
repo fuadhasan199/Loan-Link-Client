@@ -23,3 +23,4 @@ dist-ssr
 *.sln
 *.sw? 
 .env
+/Loan-Link-Server

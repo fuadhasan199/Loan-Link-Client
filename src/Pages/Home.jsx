@@ -1,6 +1,7 @@
 import React from 'react';
 import Banar from '../Extra-Components/Banar';
 import { useLoaderData } from 'react-router';
+import HowitWork from '../Extra-Components/HowitWork';
 
 
 const Home = () => { 
@@ -21,14 +22,14 @@ const Home = () => {
     {loans.map((loan)=>(
         <div className="card bg-base-100 w-96 shadow-sm">
   <figure>
-    <img
+    <img className='w-[350px] h-[250px]'
       src={loan.image}
       alt="not supported" />
   </figure>
   <div className="card-body ">
-    <h2 className="card-title ">
+    <h2 className="card-title "> 
       {loan.title}
-      <div className=" text-green-800 bg-green-100   p-2 font-bold rounded-md ml-8">Loan limit : {loan.maxLoanLimit/1000} k</div>
+      <div className=" text-green-800 bg-green-100   p-1 font-semibold rounded-md ml-8">Loan limit : {loan.maxLoanLimit/1000} </div>
     </h2>
     <p>{loan.shortDesc}</p>
     <div className="card-actions justify-center mt-3">
@@ -39,7 +40,9 @@ const Home = () => {
 </div>
     ))
         
-    }
+    } 
+    
+    <HowitWork></HowitWork>
 
 
 
