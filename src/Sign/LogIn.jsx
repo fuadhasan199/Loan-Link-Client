@@ -12,13 +12,14 @@ const LogIn = () => {
 
  
 
-  const handleLogin=(data)=>{
+  const handleLogin=async(data,e)=>{
     
 
       try{ 
-        const result=logInUser(data.email,data.password) 
+        const result=await logInUser(data.email,data.password) 
         console.log(result.user)
- toast.success('successfully Login') 
+ toast.success('successfully Login')
+ e.target.reset()
       }
    catch{
   toast.error("Login failed")
@@ -28,7 +29,8 @@ const LogIn = () => {
 
   const handleGoogleLogIn=async()=>{
     try{
-     const result=await googleSignIn()
+     const result=await googleSignIn() 
+     console.log(result.user)
       toast.success('successfully Login')
     } 
     catch(error){

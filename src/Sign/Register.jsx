@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 
 import { Link } from 'react-router';
 import UseAuth from '../Auth/UseAuth';
+import axios from 'axios';
 
 
 const Register = () => { 
@@ -15,23 +16,37 @@ const Register = () => {
 
 
 
-   const handleRegister=async(data)=>{
+   const handleRegister=async(data,e)=>{
       
-
+         const ProfileImg=data.photo[0] 
+        
+         
        try{ 
       
      const result=await registerUser(data.email,data.password) 
-     console.log(result.user)
+     console.log(result.user) 
+     const formData=new FormData() 
+     formData.append('image',ProfileImg) 
+      const img_bb_key=`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgApi}`
 
-        toast.success('Successfully Register')
-       }
+     const res=await axios.post(img_bb_key,formData)
+     
+      const imgURL=res.data.data.display_url 
+      console.log(imgURL)
+     
+
+        toast.success('Successfully Register') 
+        e.target.reset()
+       } 
+  
       catch(error){
         toast.error(error.message)
       }
    } 
  
 const handleGoogleSignIn = async () => {
-  try {
+  try { 
+  
     const result = await googleSignIn();
     console.log(result.user);
     toast.success("Google sign-in successful");
@@ -69,7 +84,7 @@ const handleGoogleSignIn = async () => {
 
           
           <label className="label">Photo</label>
-          <input type="file" {...register('photo',{required:'photo is required'})} className="input"  /> 
+          <input type="file" {...register('photo',{required:'photo is required'})} className="input" /> 
           {
             errors.photo && ( 
               <p className='text-red-500'>{errors.photo.message}</p> 
