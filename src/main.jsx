@@ -9,6 +9,9 @@ import Home from './Pages/Home.jsx'
 import AuthProvider from './Auth/AuthProvider.jsx'
 import LogIn from './Sign/LogIn.jsx'
 import AllLoans from './Pages/AllLoans.jsx'
+import Dashboard from './Pages/Dashboard.jsx'
+import UseAvatar from './Pages/UseAvatar.jsx'
+
 
 
 
@@ -27,6 +30,14 @@ import AllLoans from './Pages/AllLoans.jsx'
        {
           path:'/all-loans',
           element:<AllLoans></AllLoans>
+       }, 
+       {
+         path:'/dashboard',
+         element:<Dashboard></Dashboard>
+       }, 
+       {
+         path:'/use-avatar',
+         element:<UseAvatar></UseAvatar>
        },
 
 

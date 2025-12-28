@@ -13,7 +13,7 @@ const Navbar = () => {
       <ul
         tabIndex="-1"
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Item 1</a></li>
+        
         <li> 
           
          
@@ -32,7 +32,17 @@ const Navbar = () => {
       <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''} >Home</NavLink></li>
       <li>
           <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All Loans</NavLink>
-      </li>
+      </li> 
+
+       <li>
+          <NavLink to={'/dashboard'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Dashboard</NavLink>
+      </li> 
+
+         <li>
+          <NavLink to={'/use-Avatar'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Use Avatar</NavLink>
+      </li> 
+
+
        
     </ul>
   </div>
