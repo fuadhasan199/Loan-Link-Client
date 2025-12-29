@@ -32,8 +32,19 @@ const Register = () => {
      const res=await axios.post(img_bb_key,formData)
      
       const imgURL=res.data.data.display_url 
-      console.log(imgURL)
-     
+      console.log(imgURL) 
+      
+       const userInfo={
+         name:data.name ,
+         email:data.email, 
+         photo: imgURL,
+        role: data.role, 
+         status: 'active'
+       } 
+       const userRes=await axios.post('http://localhost:3000/users',userInfo) 
+       if(userRes.data.insertedId){
+          toast.success('Successfully save to database')
+       }
 
         toast.success('Successfully Register') 
         e.target.reset()
