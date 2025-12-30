@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 
 const AllLoans = () => { 
     const cards=useLoaderData()
@@ -24,8 +24,15 @@ const AllLoans = () => {
     </h2>
     <p>{card.shortDesc}</p>
     <div className="card-actions justify-center mt-3">
-      
-      <div className="btn btn-primary">View Details</div>
+          
+     <Link to={`/details/${card._id}`}> 
+     
+       <button className="btn btn-primary">View Details</button>
+
+     </Link>
+
+
+          
     </div>
   </div>
 </div>

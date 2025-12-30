@@ -13,6 +13,7 @@ import AllLoans from './Pages/AllLoans.jsx'
 import UseAvatar from './Pages/UseAvatar.jsx'
 import PrivateRoute from './Auth/PrivateRoute.jsx'
 import Dashboard from './Dashboard/Dashboard.jsx'
+import ViewDetails from './Extra-Components/ViewDetails.jsx'
 
 
 
@@ -34,6 +35,11 @@ import Dashboard from './Dashboard/Dashboard.jsx'
           element: <AllLoans></AllLoans>,
            loader:()=>fetch('http://localhost:3000/availableloan')
        }, 
+        {
+         path:'/details/:id',
+         element: <PrivateRoute> <ViewDetails></ViewDetails> </PrivateRoute> ,
+         loader:({params})=>fetch(`1http://localhost:3000/availableloan/${params.id}`)
+       },
      
        {
          path:'/use-avatar',
