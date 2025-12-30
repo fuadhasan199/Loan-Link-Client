@@ -23,7 +23,7 @@ import Dashboard from './Dashboard/Dashboard.jsx'
    {
     path:'/',
     element:<Mainlayout></Mainlayout> ,children: [
-   
+    
        {
         index:true, 
         element:<Home></Home>,
@@ -31,7 +31,8 @@ import Dashboard from './Dashboard/Dashboard.jsx'
        } , 
        {
           path:'/all-loans',
-          element: <PrivateRoute><AllLoans></AllLoans></PrivateRoute> 
+          element: <AllLoans></AllLoans>,
+           loader:()=>fetch('http://localhost:3000/availableloan')
        }, 
      
        {
