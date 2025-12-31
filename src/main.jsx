@@ -37,8 +37,8 @@ import ViewDetails from './Extra-Components/ViewDetails.jsx'
        }, 
         {
          path:'/details/:id',
-         element: <PrivateRoute> <ViewDetails></ViewDetails> </PrivateRoute> ,
-         loader:({params})=>fetch(`1http://localhost:3000/availableloan/${params.id}`)
+         element:  <ViewDetails></ViewDetails> ,
+         loader:({params})=>fetch(`http://localhost:3000/availableloan/${params.id}`)
        },
      
        {
