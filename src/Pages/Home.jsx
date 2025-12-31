@@ -16,11 +16,11 @@ const Home = () => {
       <Banar></Banar> 
 
   <div className="mt-5">
-    <h1 className='text-2xl font-bold p-2'>Available Loans : {loans.length}</h1> 
+    <h1 className='text-2xl font-bold p-2'>Available Loans : 6</h1> 
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3"> 
 
-    {loans.map((loan)=>(
+    {loans.slice(0,6).map((loan)=>(
         <div className="card bg-base-100 w-96 shadow-sm">
   <figure>
     <img className='w-[350px] h-[250px]'
