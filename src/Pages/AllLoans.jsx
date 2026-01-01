@@ -35,7 +35,7 @@ const AllLoans = () => {
      
        <button className="btn btn-primary">View Details</button>
 
-     </Link>
+     </Link> 
 
 
           

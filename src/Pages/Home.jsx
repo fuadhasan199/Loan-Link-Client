@@ -1,6 +1,6 @@
 import React from 'react';
 import Banar from '../Extra-Components/Banar';
-import { useLoaderData } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import HowitWork from '../Extra-Components/HowitWork';
 import Feedback from '../Extra-Components/Feedback';
 
@@ -35,7 +35,11 @@ const Home = () => {
     <p>{loan.shortDesc}</p>
     <div className="card-actions justify-center mt-3">
       
-      <div className="btn btn-primary">View Details</div>
+         <Link to={`/details/${loan._id}`}> 
+     
+       <button className="btn btn-primary">View Details</button>
+
+     </Link>
     </div>
   </div>
 </div>
