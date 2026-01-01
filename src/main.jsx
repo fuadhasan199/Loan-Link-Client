@@ -14,6 +14,7 @@ import UseAvatar from './Pages/UseAvatar.jsx'
 import PrivateRoute from './Auth/PrivateRoute.jsx'
 import Dashboard from './Dashboard/Dashboard.jsx'
 import ViewDetails from './Extra-Components/ViewDetails.jsx'
+import LoanApplication from './Extra-Components/LoanApplication.jsx'
 
 
 
@@ -55,7 +56,11 @@ import ViewDetails from './Extra-Components/ViewDetails.jsx'
        {
         path:'/login',
         element:<LogIn></LogIn> 
-       },
+       }, 
+        {
+          path:'/apply-loan',
+          element:<LoanApplication></LoanApplication>
+        },
        {
         path:'/dashboard',
         element:<PrivateRoute> <Dashboard></Dashboard>  </PrivateRoute>

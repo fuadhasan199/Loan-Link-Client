@@ -60,7 +60,7 @@ const ViewDetails = () => {
 
   
       <div className="mt-8">
-        <button className="btn btn-primary w-full">
+        <button onClick={()=>navigate('/apply-loan')} className="btn btn-primary w-full">
           Apply Now
         </button>
       </div>

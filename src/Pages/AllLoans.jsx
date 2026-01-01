@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router';
 
 const AllLoans = () => { 
-    const cards=useLoaderData()
+    const cards=useLoaderData() 
     
     return (
         <div className='container mx-auto bg-gray-100 text-center rounded-lg p-6'> 
