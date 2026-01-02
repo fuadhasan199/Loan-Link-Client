@@ -15,6 +15,7 @@ import PrivateRoute from './Auth/PrivateRoute.jsx'
 import Dashboard from './Dashboard/Dashboard.jsx'
 import ViewDetails from './Extra-Components/ViewDetails.jsx'
 import LoanApplication from './Extra-Components/LoanApplication.jsx'
+import MyLoan from './Dashboard/MyLoan.jsx'
 
 
 
@@ -63,7 +64,13 @@ import LoanApplication from './Extra-Components/LoanApplication.jsx'
         },
        {
         path:'/dashboard',
-        element:<PrivateRoute> <Dashboard></Dashboard>  </PrivateRoute>
+        element:<PrivateRoute> <Dashboard></Dashboard>  </PrivateRoute>,
+        children:[
+          {
+             path:'my-loan',
+             element:<MyLoan></MyLoan>
+          }
+        ]
        } 
 
  
