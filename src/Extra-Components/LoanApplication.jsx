@@ -1,7 +1,63 @@
+import axios from 'axios';
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 
-const LoanApplication = () => {
+
+const LoanApplication = ({user,card}) => { 
+
+     const {register, handleSubmit,reset}=useForm() 
+    
+
+      
+ const onsubmit=async(data)=>{
+     
+     const applicationInfo={
+         ...data, 
+         userEmail:user?.email,
+         loanTitle:card?.title || 'personal loan',
+         interestRate:card?.interest || "5%",
+         status:'pending',
+         paymentStatus:'unpaid',
+         applicationDate:new Date().toLocaleDateString() 
+
+
+     } 
+
+    try{ 
+        const response= await axios.post('http://localhost:3000/apply-loan',applicationInfo) 
+        if(response.data.insertedId){
+            Swal.fire({
+                title: "Application Submitted Seccessfully",
+                icon: "success",
+                confirmButtonText:"OK"
+});
+        } 
+        reset()
+
+    } 
+    catch(error){
+       Swal.fire({
+         title:'Error!',
+         text:error.message,
+         icon:'error',
+         confirmButtonText:'OK'
+       })
+    }
+
+
+
+ }
+
+
+
+
+
+
+
+
+
     return (
         <div className='container mx-auto bg-gray-200 p-2 '>
   <div className="min-h-screen bg-slate-50 py-12 px-4">
@@ -13,7 +69,7 @@ const LoanApplication = () => {
          <p className="mt-2 text-blue-100 italic">Please provide accurate information for faster verification.</p>
         </div>
 
-        <div className="p-8">
+        <form onSubmit={handleSubmit(onsubmit)} className="p-8">
          {/* --- Read Only Section  --- */}
              <div className="mb-8">
              <h3 className="text-lg font-bold text-gray-700 mb-4 flex items-center gap-2">
@@ -46,31 +102,31 @@ const LoanApplication = () => {
                         {/* First Name */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600">First Name:</label>
-                            <input type="text" placeholder="Md.Fuad Hasan" className="input input-bordered hover:border-blue-400 transition-all" />
+                            <input type="text"{...register('firstName',{required:true})} placeholder="First Name" className="input input-bordered hover:border-blue-400 transition-all" />
                         </div>
 
                         {/* Last Name */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600">Last Name :</label>
-                            <input type="text" placeholder=" Khandokar" className="input input-bordered hover:border-blue-400 transition-all" />
+                            <input type="text" {...register('lastName',{required:true})} placeholder=" Khandokar" className="input input-bordered hover:border-blue-400 transition-all" />
                         </div>
 
                         {/* Contact */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600">Contact Number </label>
-                            <input type="tel" placeholder="+880 1XXX XXXXXX" className="input input-bordered hover:border-blue-400 transition-all" />
+                            <input type="tel"{...register('phone',{required:true})} placeholder="+880 1XXX XXXXXX" className="input input-bordered hover:border-blue-400 transition-all" />
                         </div>
 
                         {/* NID */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600">National ID / Passport Number </label>
-                            <input type="text" placeholder="Enter ID number..." className="input input-bordered hover:border-blue-400 transition-all" />
+                            <input type="text"{...register('nid',{required:true})} placeholder="Enter ID number..." className="input input-bordered hover:border-blue-400 transition-all" />
                         </div>
 
                         {/* Income Source */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600">Income Source</label>
-                            <select className="select select-bordered hover:border-blue-400">
+                            <select {...register('income',{required:true})} className="select select-bordered hover:border-blue-400">
                                 <option disabled selected>Select Source</option>
                                 <option>Salary</option> 
                                 <option>Govt. Job</option>
@@ -83,31 +139,31 @@ const LoanApplication = () => {
                         {/* Monthly Income */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600">Monthly Income (taka)</label>
-                            <input type="number" placeholder="Enter amount" className="input input-bordered hover:border-blue-400 transition-all" />
+                            <input type="number" {...register('monthlyIncome', { required: true })} placeholder="Enter amount" className="input input-bordered hover:border-blue-400 transition-all" />
                         </div>
 
                         {/* Loan Amount */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600">Requested Loan Amount (taka)</label>
-                            <input type="number" placeholder="Enter requested amount" className="input input-bordered hover:border-blue-400 transition-all" />
+                            <input type="number" {...register('loanAmount', { required: true })} placeholder="Enter requested amount" className="input input-bordered hover:border-blue-400 transition-all" />
                         </div>
 
                         {/* Address */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600 p-1">Address:</label>
-                            <input type="text" placeholder="thana,district,division" className="input input-bordered hover:border-blue-400 transition-all" />
+                            <input type="text" {...register('address', { required: true })} placeholder="thana,district,division" className="input input-bordered hover:border-blue-400 transition-all" />
                         </div>
 
                         {/* Reason for Loan */}
                         <div className="form-control col-span-full">
                             <label className="label font-semibold text-gray-600 p-1">Reason for Loan</label>
-                            <textarea className="textarea textarea-bordered h-24 hover:border-blue-400" placeholder="Describe why you need this loan..."></textarea>
+                            <textarea {...register('reason', { required: true })} className="textarea textarea-bordered h-24 hover:border-blue-400" placeholder="Describe why you need this loan..."></textarea>
                         </div>
 
                         {/* Extra Notes */}
                         <div className="form-control col-span-full">
                             <label className="label font-semibold text-gray-600 p-1">Extra Notes (Optional)</label>
-                            <textarea className="textarea textarea-bordered h-20 hover:border-blue-400" placeholder="Any additional information..."></textarea>
+                            <textarea {...register('extraNotes')} className="textarea textarea-bordered h-20 hover:border-blue-400" placeholder="Any additional information..."></textarea>
                         </div>
                     </div>
 
@@ -127,7 +183,7 @@ const LoanApplication = () => {
                             Apply for Loan
                         </button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         </div>
