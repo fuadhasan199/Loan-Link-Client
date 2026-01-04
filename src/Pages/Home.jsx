@@ -7,8 +7,8 @@ import Feedback from '../Extra-Components/Feedback';
 
 const Home = () => { 
    
- const loans=useLoaderData()
- console.log(loans)
+ const cards=useLoaderData()
+
 
     
     return (
@@ -20,22 +20,22 @@ const Home = () => {
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3"> 
 
-    {loans.slice(0,6).map((loan)=>(
+    {cards.slice(0,6).map((card)=>(
         <div className="card bg-base-100 w-96 shadow-sm">
   <figure>
     <img className='w-[350px] h-[250px]'
-      src={loan.image}
+      src={card.image}
       alt="not supported" />
   </figure>
   <div className="card-body ">
     <h2 className="card-title "> 
-      {loan.title}
-      <div className=" text-green-800 bg-green-100   p-1 font-semibold rounded-md ml-4">Loan limit : {loan.maxLoanLimit/1000}k</div>
+      {card.title}
+      <div className=" text-green-800 bg-green-100   p-1 font-semibold rounded-md ml-4">Loan limit : {card.maxLoanLimit/1000}k</div>
     </h2>
-    <p>{loan.shortDesc}</p>
+    <p>{card.shortDesc}</p>
     <div className="card-actions justify-center mt-3">
       
-         <Link to={`/details/${loan._id}`}> 
+         <Link to={`/details/${card._id}`}> 
      
        <button className="btn btn-primary">View Details</button>
 

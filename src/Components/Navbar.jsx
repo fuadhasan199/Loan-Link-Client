@@ -1,8 +1,17 @@
 import React from 'react'; 
 import logo from "../../public/Loan-Link-Logo.jpg"
 import { Link, NavLink } from 'react-router';
+import UseAuth from '../Auth/UseAuth';
+import { signOut } from 'firebase/auth';
+import { auth } from '../Firebase/Firebase.config';
 
-const Navbar = () => {
+const Navbar = () => { 
+  const {user}=UseAuth() 
+  const handleSignOut=()=>{
+     signOut(auth) 
+     .then(res=>console.log(res.user))
+     .catch(err=>console.log(err.message))
+  }
     return ( 
      <div className="navbar bg-base-100 shadow-sm container mx-auto rounded-md ">
   <div className="navbar-start">
@@ -47,7 +56,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+    {user ?<a className='btn btn-primary text-white rounded-md' onClick={handleSignOut}>LogOut</a>:<Link to={'/login'} className='btn btn-primary text-white rounded-md'>LogIn</Link>}
   </div>
 </div>
     );

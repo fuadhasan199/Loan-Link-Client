@@ -2,20 +2,23 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import UseAuth from '../Auth/UseAuth';
+import { useLocation } from 'react-router';
 
 
 
-const LoanApplication = ({user,card}) => { 
-
+const LoanApplication = () => { 
+     const {user}=UseAuth()
      const {register, handleSubmit,reset}=useForm() 
     
-
+const location=useLocation()
+const card=location.state?.card
       
  const onsubmit=async(data)=>{
      
      const applicationInfo={
          ...data, 
-         userEmail:user?.email,
+         userEmail:user?.email ||"",
          loanTitle:card?.title || 'personal loan',
          interestRate:card?.interest || "5%",
          status:'pending',
@@ -79,7 +82,7 @@ const LoanApplication = ({user,card}) => {
      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50 p-6 rounded-xl border border-dashed border-gray-300">
                      <div className="form-control">
          <label className="label text-xs font-bold uppercase text-gray-500">User Email</label>
-                <input type="text" value="abc@.com" readOnly className="input input-bordered bg-gray-100 text-gray-500 font-medium cursor-not-allowed focus:outline-none" />
+                <input type="text" value={user?.email} readOnly className="input input-bordered bg-gray-100 text-gray-500 font-medium cursor-not-allowed focus:outline-none" />
                             </div>
     <div className="form-control">
                      <label className="label text-xs font-bold uppercase text-gray-500">Loan Title</label>
