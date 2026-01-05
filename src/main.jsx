@@ -60,7 +60,7 @@ import MyLoan from './Dashboard/MyLoan.jsx'
        }, 
         {
           path:'/apply-loan',
-          element:<LoanApplication></LoanApplication>
+          element:<LoanApplication></LoanApplication> 
         },
        {
         path:'/dashboard',

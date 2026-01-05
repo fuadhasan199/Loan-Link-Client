@@ -11,4 +11,4 @@ const UseAuth = () => {
        
 };
 
-export default UseAuth; 
+export default UseAuth;  

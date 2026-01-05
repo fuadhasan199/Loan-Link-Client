@@ -9,15 +9,21 @@ const MyLoan = () => {
     const [loading,setloading]=useState(true) 
 
 useEffect(() => {
-  if (!user?.email) return
+  if (!user?.email) {
 
-  axios
-    .get(`http://localhost:3000/my-loan/${user.email}`)
+  
+ setmyloan([]) 
+setloading(false) 
+  return } 
+
+
+    setloading(true)
+   axios.get(`http://localhost:3000/my-loan/${user.email}`)
     .then(res => {
-      setmyloan(res.data)
+      setmyloan(res.data) 
       setloading(false)
-    })
-}, [user])
+    }) }
+, [user?.email])
 
   
 
