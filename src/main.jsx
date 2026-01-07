@@ -17,6 +17,9 @@ import ViewDetails from './Extra-Components/ViewDetails.jsx'
 import LoanApplication from './Extra-Components/LoanApplication.jsx'
 import MyLoan from './Dashboard/MyLoan.jsx'
 import Profile from './Dashboard/Profile.jsx'
+import AddLoans from './Dashboard/AddLoans.jsx'
+import ManageLoan from './Dashboard/ManageLoan.jsx'
+import PendingApplication from './Dashboard/PendingApplication.jsx'
 
 
 
@@ -76,6 +79,18 @@ import Profile from './Dashboard/Profile.jsx'
       
           path:'profile',
           element:<Profile></Profile>    
+         } ,
+         {
+          path:'add-lone',
+          element:<AddLoans></AddLoans>
+         },
+         {
+          path:'manage-loan',
+          element:<ManageLoan></ManageLoan>
+         },
+         {
+          path:'pending-loan',
+          element:<PendingApplication></PendingApplication>
          }
         ]
        } 

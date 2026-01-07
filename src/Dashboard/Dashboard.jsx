@@ -5,6 +5,8 @@ import { Link,Outlet } from 'react-router';
 import UseAuth from '../Auth/UseAuth';
 import axios from 'axios';
 import { ImProfile } from 'react-icons/im';
+import { MdLibraryAdd, MdManageAccounts } from 'react-icons/md';
+import { RiPassPendingFill } from 'react-icons/ri';
 
 const Dashboard = () => { 
 
@@ -82,17 +84,12 @@ const Dashboard = () => {
          {/* Borrower */}
          {role==='borrower' && (
                 
-                        <li>
+            <li>
             <Link to={'/dashboard/my-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
             {/* Settings icon */} < SiUnacademy className='items-center' />
             <span className="is-drawer-close:hidden">  My Loan</span>
-            
-          </Link> 
-
-         
-
-
-        </li> 
+            </Link> 
+            </li> 
 
 
          )} 
@@ -100,9 +97,38 @@ const Dashboard = () => {
 
        {/* Manager  */} 
 
-       { role==='manager' && (
-          
-       )}
+       { role==='manager' && ( 
+
+        <>
+             <li>
+            <Link to={'/dashboard/add-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            {/* Settings icon */} <MdLibraryAdd className='items-center' />
+            <span className="is-drawer-close:hidden"> Add Loan</span>
+            </Link> 
+            </li>  
+
+
+               <li>
+            <Link to={'/dashboard/manage-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            {/* Settings icon */} <MdManageAccounts className='items-center' />
+            <span className="is-drawer-close:hidden"> Manage Loan</span>
+            </Link> 
+            </li>  
+
+
+
+               <li>
+            <Link to={'/dashboard/pending-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            {/* Settings icon */} <RiPassPendingFill className='items-center' />
+            <span className="is-drawer-close:hidden"> Pending Loan</span>
+            </Link> 
+            </li> 
+        
+        
+        
+        </>
+
+                  )}
 
 
 
