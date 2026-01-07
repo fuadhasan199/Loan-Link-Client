@@ -16,6 +16,7 @@ import Dashboard from './Dashboard/Dashboard.jsx'
 import ViewDetails from './Extra-Components/ViewDetails.jsx'
 import LoanApplication from './Extra-Components/LoanApplication.jsx'
 import MyLoan from './Dashboard/MyLoan.jsx'
+import Profile from './Dashboard/Profile.jsx'
 
 
 
@@ -69,7 +70,13 @@ import MyLoan from './Dashboard/MyLoan.jsx'
           {
              path:'my-loan',
              element:<MyLoan></MyLoan>
-          }
+          } , 
+          { 
+
+      
+          path:'profile',
+          element:<Profile></Profile>    
+         }
         ]
        } 
 

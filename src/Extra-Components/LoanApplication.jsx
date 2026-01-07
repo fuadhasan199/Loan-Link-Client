@@ -3,13 +3,15 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import UseAuth from '../Auth/UseAuth';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
+import { GrLinkPrevious } from 'react-icons/gr';
 
 
 
 const LoanApplication = () => { 
      const {user}=UseAuth()
      const {register, handleSubmit,reset}=useForm() 
+     const navigate=useNavigate()
     
 const location=useLocation()
 const card=location.state?.card
@@ -49,23 +51,12 @@ const card=location.state?.card
        })
     }
 
-
-
  }
-
-
-
-
-
-
-
-
-
-    return (
+ return (
         <div className='container mx-auto bg-gray-200 p-2 '>
   <div className="min-h-screen bg-slate-50 py-12 px-4">
  <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
-                
+          <button className='btn btn-primary p-2  rounded-md m-2' onClick={()=>navigate(-1)}><GrLinkPrevious /> Previous page </button>    
          {/* Header Section */}
         <div className="bg-gradient-to-r from-blue-700 to-blue-500 p-8 text-white">
              <h2 className="text-3xl font-extrabold">Loan Application Form</h2>

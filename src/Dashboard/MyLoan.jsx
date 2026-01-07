@@ -28,7 +28,8 @@ setloading(false)
   
 
     return (
-<div className="overflow-x-auto container mx-auto mt-6 bg-gray-200 p-2 gap-3 rounded-lg">
+<div className="overflow-x-auto container mx-auto mt-6 bg-gray-200 p-2 gap-3 rounded-lg shadow-md"> 
+  <h1 className='mb-2 text-2xl text-gray-800 font-bold '>User Loan Application List</h1>
   <table className="table table-xs">
     <thead>
       <tr>
