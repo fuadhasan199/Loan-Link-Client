@@ -5,7 +5,7 @@ import { Link,Outlet } from 'react-router';
 import UseAuth from '../Auth/UseAuth';
 import axios from 'axios';
 import { ImProfile } from 'react-icons/im';
-import { MdLibraryAdd, MdManageAccounts } from 'react-icons/md';
+import { MdFormatListBulletedAdd, MdLibraryAdd, MdManageAccounts } from 'react-icons/md';
 import { RiPassPendingFill } from 'react-icons/ri';
 
 const Dashboard = () => { 
@@ -122,13 +122,44 @@ const Dashboard = () => {
             {/* Settings icon */} <RiPassPendingFill className='items-center' />
             <span className="is-drawer-close:hidden"> Pending Loan</span>
             </Link> 
-            </li> 
+            </li>   
         
         
         
-        </>
+        </> 
 
-                  )}
+                  )}  
+                  
+                  {/*  admin */} 
+
+               {role==='admin' && ( 
+
+                <>
+                    <li>
+            <Link to={'/dashboard/manage-user'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            {/* Settings icon */} <MdManageAccounts className='items-center' />
+            <span className="is-drawer-close:hidden"> Manage User</span>
+            </Link> 
+            </li>  
+
+
+
+                          <li>
+            <Link to={'/dashboard/all-system-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            {/* Settings icon */} <MdFormatListBulletedAdd className='items-center' />
+            <span className="is-drawer-close:hidden"> All System Loan</span>
+            </Link> 
+            </li> 
+                
+          
+                
+                
+                </>
+                 
+               )}   
+
+
+
 
 
 

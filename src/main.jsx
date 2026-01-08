@@ -20,6 +20,8 @@ import Profile from './Dashboard/Profile.jsx'
 import AddLoans from './Dashboard/AddLoans.jsx'
 import ManageLoan from './Dashboard/ManageLoan.jsx'
 import PendingApplication from './Dashboard/PendingApplication.jsx'
+import ManageUser from './Dashboard/ManageUser.jsx'
+import AllSysytemLoan from './Dashboard/AllSysytemLoan.jsx'
 
 
 
@@ -79,7 +81,10 @@ import PendingApplication from './Dashboard/PendingApplication.jsx'
       
           path:'profile',
           element:<Profile></Profile>    
-         } ,
+         } , 
+          
+        //  Manager Routes
+
          {
           path:'add-lone',
           element:<AddLoans></AddLoans>
@@ -91,6 +96,16 @@ import PendingApplication from './Dashboard/PendingApplication.jsx'
          {
           path:'pending-loan',
           element:<PendingApplication></PendingApplication>
+         } , 
+
+        //  admin Routes
+         {
+           path:'manage-user',
+           element:<ManageUser></ManageUser>
+         } ,
+         { 
+          path:'all-sysytem-loan',
+          element:<AllSysytemLoan></AllSysytemLoan>
          }
         ]
        } 
