@@ -12,58 +12,74 @@ const Register = () => {
     handleSubmit, formState: { errors }}=useForm() 
 
         
-    const {registerUser,googleSignIn}=UseAuth()
+    const {registerUser,googleSignIn,updateUserProfile}=UseAuth()
 
 
 
-   const handleRegister=async(data,e)=>{
-      
-         const ProfileImg=data.photo[0] 
+  const handleRegister = async (data, e) => {
+    const ProfileImg = data.photo[0];
+    
+    try {
+       
+        const formData = new FormData();
+        formData.append('image', ProfileImg);
+        const img_bb_key = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgApi}`;
+        const res = await axios.post(img_bb_key, formData);
+        const photoLink = res.data.data.display_url;
+
         
-         
-       try{ 
-      
-     const result=await registerUser(data.email,data.password) 
-     console.log(result.user) 
-     const formData=new FormData() 
-     formData.append('image',ProfileImg) 
-      const img_bb_key=`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imgApi}`
+        await registerUser(data.email, data.password);
 
-     const res=await axios.post(img_bb_key,formData)
-     
-      const imgURL=res.data.data.display_url 
-      console.log(imgURL) 
-      
-       const userInfo={
-         name:data.name ,
-         email:data.email, 
-         photo: imgURL,
-        role: data.role, 
-         status: 'active'
-       } 
-       const userRes=await axios.post('http://localhost:3000/users',userInfo) 
-       if(userRes.data.insertedId){
-          toast.success('Successfully save to database')
-       }
+        
+        await updateUserProfile(data.name, photoLink);
 
-        toast.success('Successfully Register') 
-        e.target.reset()
-       } 
-  
-      catch(error){
-        toast.error(error.message)
-      }
-   } 
+      
+        const userInfo = {
+            name: data.name,
+            email: data.email,
+            photo: photoLink, 
+            role: data.role,
+            status: 'active'
+        };
+
+        const userRes = await axios.post('http://localhost:3000/users', userInfo);
+        
+        if (userRes.data.insertedId) {
+            toast.success('Registration and Profile Sync Successful!');
+            e.target.reset();
+           
+            window.location.reload(); 
+        }
+
+    } catch (error) {
+        toast.error(error.message);
+    }
+};  
  
 const handleGoogleSignIn = async () => {
   try { 
   
-    const result = await googleSignIn();
-    console.log(result.user);
-    toast.success("Google sign-in successful");
+   const result = await googleSignIn();
+    const user = result.user;
+
+    
+    const userInfo = {
+      name: user.displayName,
+      email: user.email,
+      photo: user.photoURL, 
+      role: 'borrower',    
+      status: 'active'
+    }; 
+
+  await axios.post('http://localhost:3000/users', userInfo);
+    
+    toast.success("Login Successful!");
   } catch (error) {
     toast.error(error.message);
   }
+      
+
+
 };
 
 

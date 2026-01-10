@@ -23,10 +23,13 @@ const Profile = () => {
 
         <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow"> 
 
-          <img src={user.photoURL} alt="https://i.ibb.co.com/CpSS3hkY/photo-1740252117070-7aa2955b25f8-w-500-auto-format-fit-crop-q-60-ixlib-rb-4-1.jpg" className='rounded-full mx-auto w-24 h-25' /> 
+       <img 
+            src={user?.photoURL || user?.photo || "https://via.placeholder.com/150"} 
+                 alt="profile" className='rounded-full mx-auto w-24 h-24 object-cover border-2 border-primary' 
+/>
 
-          <h2 className='text-center mt-3 font-bold p-1'>Name:{user.displayName}</h2> 
-          <p className='font-bold text-center mt-1 text-gray-700 '>Email:{user.email}</p> 
+<h2 className='text-center mt-3 font-bold'>Name: {user?.displayName || user?.name}</h2>
+<p className='text-center'>Email: {user?.email}</p>
 
            <p className="text-sm text-center mt-2 text-gray-700">
         User ID: {user.uid}

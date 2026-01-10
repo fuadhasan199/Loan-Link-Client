@@ -22,7 +22,11 @@ setloading(false)
     .then(res => {
       setmyloan(res.data) 
       setloading(false)
-    }) }
+    }) 
+    .catch(()=>{
+       setloading(false)
+    })
+  }
 , [user?.email])
 
   
