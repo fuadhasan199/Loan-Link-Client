@@ -109,7 +109,7 @@ const handleGoogleSignIn = async () => {
           <select className='select select-bordered w-full' {...register('role')}   >  
 
          <option value="borrower">borrower</option>
-         <option value="Manager">Manager</option>
+         <option value="Manager">manager</option>
 
           </select>
 
