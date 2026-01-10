@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoMdHome } from 'react-icons/io';
 import { SiUnacademy } from 'react-icons/si';
 import { Link,Outlet } from 'react-router';
@@ -12,23 +12,27 @@ const Dashboard = () => {
 
   const {user}=UseAuth()
   const [role,setRole]=useState(null) 
-  const [loading,setLoading]=useState(true) 
+  const [loading ,setLoading]=useState(true) 
 
 
-   useState(()=>{
+   useEffect(()=>{
    
-    if(user?.email){
+    if(user?.email){ 
+       setLoading(true)
        axios.get(`http://localhost:3000/users/role/${user.email}`) 
        .then(res=>{setRole(res.data.role)
         setLoading(false)
-       })
+       }) 
+       .catch(setLoading(false))
     } 
-    if(loading){
-       return <span className="loading loading-spinner loading-xl"></span>
-    }
-
-
-   },[user?.email])
+   
+   },[user?.email]) 
+   if(loading){ 
+     return <div className="flex justify-center items-center min-h-screen"> 
+           <span className="loading loading-dots loading-xl"></span>
+    </div>
+     
+   }
 
 
 
@@ -66,11 +70,11 @@ const Dashboard = () => {
 
         </li>
 
-        {/* my loan item */}
+        {/* my profile item */}
         <li>
-            <Link to={'/dashboard/profile'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            <Link to={'/dashboard/profile'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-profile">
             {/* Settings icon */} <ImProfile className='items-center' />
-            <span className="is-drawer-close:hidden">  My Profile</span>
+            <span className="is-drawer-close:hidden"> My Profile</span>
             
           </Link> 
 
@@ -102,7 +106,7 @@ const Dashboard = () => {
         <>
              <li>
             <Link to={'/dashboard/add-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
-            {/* Settings icon */} <MdLibraryAdd className='items-center' />
+             <MdLibraryAdd className='items-center' />
             <span className="is-drawer-close:hidden"> Add Loan</span>
             </Link> 
             </li>  
@@ -110,7 +114,7 @@ const Dashboard = () => {
 
                <li>
             <Link to={'/dashboard/manage-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
-            {/* Settings icon */} <MdManageAccounts className='items-center' />
+             <MdManageAccounts className='items-center' />
             <span className="is-drawer-close:hidden"> Manage Loan</span>
             </Link> 
             </li>  
@@ -119,7 +123,7 @@ const Dashboard = () => {
 
                <li>
             <Link to={'/dashboard/pending-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
-            {/* Settings icon */} <RiPassPendingFill className='items-center' />
+             <RiPassPendingFill className='items-center' />
             <span className="is-drawer-close:hidden"> Pending Loan</span>
             </Link> 
             </li>   
@@ -137,7 +141,7 @@ const Dashboard = () => {
                 <>
                     <li>
             <Link to={'/dashboard/manage-user'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
-            {/* Settings icon */} <MdManageAccounts className='items-center' />
+             <MdManageAccounts className='items-center' />
             <span className="is-drawer-close:hidden"> Manage User</span>
             </Link> 
             </li>  
@@ -146,7 +150,7 @@ const Dashboard = () => {
 
                           <li>
             <Link to={'/dashboard/all-system-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
-            {/* Settings icon */} <MdFormatListBulletedAdd className='items-center' />
+            <MdFormatListBulletedAdd className='items-center' />
             <span className="is-drawer-close:hidden"> All System Loan</span>
             </Link> 
             </li> 
