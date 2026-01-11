@@ -23,7 +23,9 @@ const Dashboard = () => {
        .then(res=>{setRole(res.data.role)
         setLoading(false)
        }) 
-       .catch(setLoading(false))
+       .catch(()=>{ 
+        setLoading(false)
+       })
     } 
    
    },[user?.email]) 
@@ -110,7 +112,7 @@ const Dashboard = () => {
             <span className="is-drawer-close:hidden"> Add Loan</span>
             </Link> 
             </li>  
-
+              
 
                <li>
             <Link to={'/dashboard/manage-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">

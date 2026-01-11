@@ -86,7 +86,7 @@ import AllSysytemLoan from './Dashboard/AllSysytemLoan.jsx'
         //  Manager Routes
 
          {
-          path:'add-lone',
+          path:'add-loan',
           element:<AddLoans></AddLoans>
          },
          {
@@ -104,7 +104,7 @@ import AllSysytemLoan from './Dashboard/AllSysytemLoan.jsx'
            element:<ManageUser></ManageUser>
          } ,
          { 
-          path:'all-sysytem-loan',
+          path:'all-system-loan',
           element:<AllSysytemLoan></AllSysytemLoan>
          }
         ]

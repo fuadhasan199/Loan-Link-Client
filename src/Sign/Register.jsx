@@ -2,12 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import UseAuth from '../Auth/UseAuth';
 import axios from 'axios';
 
 
 const Register = () => { 
+
+  const navigate=useNavigate()
   const {  register,
     handleSubmit, formState: { errors }}=useForm() 
 
@@ -48,7 +50,7 @@ const Register = () => {
             toast.success('Registration and Profile Sync Successful!');
             e.target.reset();
            
-            window.location.reload(); 
+           navigate('/')
         }
 
     } catch (error) {
@@ -75,7 +77,7 @@ const handleGoogleSignIn = async () => {
     
     toast.success("Login Successful!");
   } catch (error) {
-    toast.error(error.message);
+    toast.error(error.message)
   }
       
 
@@ -125,7 +127,7 @@ const handleGoogleSignIn = async () => {
           <select className='select select-bordered w-full' {...register('role')}   >  
 
          <option value="borrower">borrower</option>
-         <option value="Manager">manager</option>
+         <option value="manager">manager</option>
 
           </select>
 
@@ -159,7 +161,7 @@ const handleGoogleSignIn = async () => {
           <p>Already have an account? <Link to={'/login'} className='text-red-600'>Login</Link></p>
           
           <div className="flex flex-col">
-   <button className="btn btn-primary mt-4 w-full" >Register</button>
+           <button className="btn btn-primary mt-4 w-full" >Register</button>
           <button onClick={handleGoogleSignIn} className="btn btn-primary mt-4 w-full">Register with Google</button> 
 
           </div>
