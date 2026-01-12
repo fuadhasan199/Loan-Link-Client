@@ -11,7 +11,74 @@ const Navbar = () => {
      signOut(auth) 
      .then(res=>console.log(res.user))
      .catch(err=>console.log(err.message))
-  }
+  } 
+
+    const LogedUser=(
+        <>
+         <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''} >Home</NavLink></li>
+      <li>
+          <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All Loans</NavLink>
+      </li> 
+
+       <li>
+          <NavLink to={'/dashboard'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Dashboard</NavLink>
+      </li> 
+
+         <li>
+          <NavLink to={'/use-Avatar'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>User Avatar</NavLink>
+      </li> 
+        
+        
+        
+        
+        </>
+    ) 
+
+
+    const GuestUser=(
+        <>
+         <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''} >Home</NavLink></li>
+        
+         <li> 
+          <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All Loans</NavLink>
+
+         </li> 
+
+         <li>
+          <NavLink to={'/about'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>About us</NavLink>
+
+         </li> 
+
+         <li>
+          <NavLink to={'/contact'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Contact</NavLink> 
+
+         </li> 
+
+         <li>
+          <NavLink to={'/login'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Login</NavLink>
+
+         </li>  
+
+
+            <li>
+          <NavLink to={'/register'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Register</NavLink>
+
+         </li> 
+        
+        
+        
+        
+        </>
+    )
+
+
+
+
+
+
+
+
+
     return ( 
      <div className="navbar bg-base-100 shadow-sm container mx-auto rounded-md ">
   <div className="navbar-start">
@@ -27,8 +94,7 @@ const Navbar = () => {
           
          
           <ul className="p-2">
-            <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Home</NavLink></li>
-            <li><NavLink to={'/all-loans'}className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All loans</NavLink></li>
+           {user ?LogedUser : GuestUser}
           </ul>
         </li> 
       
@@ -38,19 +104,8 @@ const Navbar = () => {
   </div>
   <div className="navbar-center hidden lg:flex"> 
     <ul className="menu menu-horizontal px-1">
-      <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''} >Home</NavLink></li>
-      <li>
-          <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All Loans</NavLink>
-      </li> 
-
-       <li>
-          <NavLink to={'/dashboard'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Dashboard</NavLink>
-      </li> 
-
-         <li>
-          <NavLink to={'/use-Avatar'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>User Avatar</NavLink>
-      </li> 
-
+      
+     {user ?LogedUser : GuestUser}
 
        
     </ul>

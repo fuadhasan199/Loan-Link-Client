@@ -22,6 +22,8 @@ import ManageLoan from './Dashboard/ManageLoan.jsx'
 import PendingApplication from './Dashboard/PendingApplication.jsx'
 import ManageUser from './Dashboard/ManageUser.jsx'
 import AllSysytemLoan from './Dashboard/AllSysytemLoan.jsx'
+import About from './Extra-Components/About.jsx'
+import Contack from './Extra-Components/Contack.jsx'
 
 
 
@@ -52,9 +54,16 @@ import AllSysytemLoan from './Dashboard/AllSysytemLoan.jsx'
        {
          path:'/use-avatar',
          element:<UseAvatar></UseAvatar>
-       },
-
-
+       }, 
+         
+          {
+            path:'/about',
+            element:<About></About>
+          }, 
+          {
+            path:'/contact',
+            element:<Contack></Contack>
+          },
        {
         path:'/register',
         element:<Register></Register>
@@ -66,7 +75,8 @@ import AllSysytemLoan from './Dashboard/AllSysytemLoan.jsx'
        }, 
         {
           path:'/apply-loan',
-          element:<LoanApplication></LoanApplication> 
+          element:<PrivateRoute> <LoanApplication></LoanApplication>  </PrivateRoute> 
+          
         },
        {
         path:'/dashboard',
