@@ -107,7 +107,7 @@ const Dashboard = () => {
 
         <>
              <li>
-            <Link to={'/dashboard/add-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            <Link to={'/dashboard/add-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="add-loan">
              <MdLibraryAdd className='items-center' />
             <span className="is-drawer-close:hidden"> Add Loan</span>
             </Link> 
@@ -115,7 +115,7 @@ const Dashboard = () => {
               
 
                <li>
-            <Link to={'/dashboard/manage-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            <Link to={'/dashboard/manage-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="manage-loan">
              <MdManageAccounts className='items-center' />
             <span className="is-drawer-close:hidden"> Manage Loan</span>
             </Link> 
@@ -124,7 +124,7 @@ const Dashboard = () => {
 
 
                <li>
-            <Link to={'/dashboard/pending-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            <Link to={'/dashboard/pending-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="pending-loan">
              <RiPassPendingFill className='items-center' />
             <span className="is-drawer-close:hidden"> Pending Loan</span>
             </Link> 

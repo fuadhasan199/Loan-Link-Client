@@ -48,14 +48,21 @@ const Navbar = () => {
       </li> 
 
          <li>
-          <NavLink to={'/use-Avatar'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Use Avatar</NavLink>
+          <NavLink to={'/use-Avatar'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>User Avatar</NavLink>
       </li> 
 
 
        
     </ul>
   </div>
-  <div className="navbar-end">
+  <div className="navbar-end gap-5 items-center"> 
+     <div className=" ml-5 ">
+      <label className="flex cursor-pointer gap-2">
+  
+  <input type="checkbox" value="synthwave" className="toggle theme-controller" />
+  
+</label>
+     </div>
     {user ?<a className='btn btn-primary text-white rounded-md' onClick={handleSignOut}>LogOut</a>:<Link to={'/login'} className='btn btn-primary text-white rounded-md'>LogIn</Link>}
   </div>
 </div>
