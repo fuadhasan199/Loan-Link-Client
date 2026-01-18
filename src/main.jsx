@@ -24,6 +24,7 @@ import ManageUser from './Dashboard/ManageUser.jsx'
 import AllSysytemLoan from './Dashboard/AllSysytemLoan.jsx'
 import About from './Extra-Components/About.jsx'
 import Contack from './Extra-Components/Contack.jsx'
+import Theme from './Extra-Components/Theme.jsx'
 
 
 
@@ -131,9 +132,13 @@ import Contack from './Extra-Components/Contack.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode> 
+    <Theme>
+
+  
     <AuthProvider>
  <RouterProvider router={router} ></RouterProvider>
-    </AuthProvider>
+    </AuthProvider> 
+      </Theme>
    
   </StrictMode>,
 )

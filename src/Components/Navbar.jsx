@@ -1,9 +1,10 @@
-import React from 'react'; 
+import React, { useContext } from 'react'; 
 import logo from "../../public/Loan-Link-Logo.jpg"
 import { Link, NavLink } from 'react-router';
 import UseAuth from '../Auth/UseAuth';
 import { signOut } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.config';
+import { ThemeContext } from '../Extra-Components/Theme';
 
 const Navbar = () => { 
   const {user}=UseAuth() 
@@ -11,7 +12,7 @@ const Navbar = () => {
      signOut(auth) 
      .then(res=>console.log(res.user))
      .catch(err=>console.log(err.message))
-  } 
+  }  
 
     const LogedUser=(
         <>
@@ -72,7 +73,7 @@ const Navbar = () => {
     )
 
 
-
+    const {theme,setTheme}=useContext(ThemeContext)
 
 
 
@@ -114,7 +115,7 @@ const Navbar = () => {
      <div className=" ml-5 ">
       <label className="flex cursor-pointer gap-2">
   
-  <input type="checkbox" value="synthwave" className="toggle theme-controller" />
+  <input type="checkbox" value="synthwave" className="toggle theme-controller" checked={theme === "dark"} onChange={() => setTheme(theme === "dark" ? "light" : "dark")} />
   
 </label>
      </div>
