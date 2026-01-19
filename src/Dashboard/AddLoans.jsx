@@ -12,19 +12,21 @@ const AddLoans = () => {
       
       const loanData={
          ...data,
-        insterestRate:parseFloat(data.interest),
-         maxLimit:parseFloat(data.maxLoanLimit),
-         category:data.category,
-          title:data.title,
-         description:data.description,
-         shortDesc:data.shortDesc,
-         createAt:new Date().toLocaleDateString(),
-         createdby:user?.email,
+        title: data.title,
+         category: data.category,
+        interestRate: Number(data.interest),
+         maxLoanLimit: Number(data.maxLoanLimit),
+        emiPlans: data.emiPlans.split(',').map(e => e.trim()),
+        image: data.image,
+        shortDesc: data.shortDesc,
+        description: data.description,
+       createdAt: new Date().toLocaleDateString(),
+       createdBy: user?.email
 
       } 
       const res=await axios.post(`http://localhost:3000/availableloan`,loanData) 
 
-      if(res.data.insetedId){
+      if(res.data.insertedId){
          
         Swal.fire({
            title: "Success",
@@ -53,11 +55,11 @@ const AddLoans = () => {
                     
                     <div className="form-control w-fit">
                         <label className="label text-base-content">Loan Title</label>
-                        <input type="text" {...register('title',({required:true}))} name="title" className="input input-bordered"  />
+                        <input type="text" {...register('title',({required:true}))}  className="input input-bordered"  />
                     </div>
 
                     <div className="form-control text-base-content w-fit ">
-                        <label className="label text-base-content">Category</label>
+                        <label className="label text-base-content">Category :</label>
                         <select name="category" {...register('category')} className="select select-bordered">
                             <option value="Personal">Personal</option>
                             <option value="Business">Business</option>
@@ -67,17 +69,17 @@ const AddLoans = () => {
 
                     <div className="form-control text-base-content w-fit">
                         <label className="label text-base-content">Interest Rate (%)</label>
-                        <input type="number"{...register('interest',({required:true}))}  name="interest" className="input input-bordered"  />
+                        <input type="number"{...register('interest',({required:true}))} className="input input-bordered"  />
                     </div>
 
                     <div className="form-control w-fit text-base-content">
                         <label className="label text-base-content">Max Loan Limit</label>
-                        <input type="number"{...register('maxLoanLimit',({required:true}))} name="maxLimit" className="input input-bordered"  />
+                        <input type="number"{...register('maxLoanLimit',({required:true}))}  className="input input-bordered"  />
                     </div>
 
                     <div className="form-control w-fit text-base-content">
                         <label className="label text-base-content">EMI Plans</label>
-                        <input type="text" {...register('emiPlans',({required:true}))} name="emiPlans" placeholder="e.g. 6, 12, 24 months" className="input input-bordered"  />
+                        <input type="text" {...register('emiPlans',({required:true}))}  placeholder="e.g. 6, 12, 24 months" className="input input-bordered"  />
                     </div>
 
                     <div className="form-control w-fit text-base-content">
