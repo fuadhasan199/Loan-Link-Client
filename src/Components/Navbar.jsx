@@ -16,17 +16,17 @@ const Navbar = () => {
 
     const LogedUser=(
         <>
-         <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''} >Home</NavLink></li>
+         <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'} >Home</NavLink></li>
       <li>
-          <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All Loans</NavLink>
+          <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>All Loans</NavLink>
       </li> 
 
        <li>
-          <NavLink to={'/dashboard'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Dashboard</NavLink>
+          <NavLink to={'/dashboard'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>Dashboard</NavLink>
       </li> 
 
          <li>
-          <NavLink to={'/use-Avatar'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>User Avatar</NavLink>
+          <NavLink to={'/use-Avatar'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>User Avatar</NavLink>
       </li> 
         
         
@@ -38,31 +38,31 @@ const Navbar = () => {
 
     const GuestUser=(
         <>
-         <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-green-600 font-bold":''} >Home</NavLink></li>
+         <li><NavLink to={'/'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'} >Home</NavLink></li>
         
          <li> 
-          <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>All Loans</NavLink>
+          <NavLink to={'/all-loans'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>All Loans</NavLink>
 
          </li> 
 
          <li>
-          <NavLink to={'/about'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>About us</NavLink>
+          <NavLink to={'/about'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>About us</NavLink>
 
          </li> 
 
          <li>
-          <NavLink to={'/contact'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Contact</NavLink> 
+          <NavLink to={'/contact'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>Contact</NavLink> 
 
          </li> 
 
          <li>
-          <NavLink to={'/login'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Login</NavLink>
+          <NavLink to={'/login'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>Login</NavLink>
 
          </li>  
 
 
             <li>
-          <NavLink to={'/register'} className={({isActive})=>isActive ? "text-green-600 font-bold":''}>Register</NavLink>
+          <NavLink to={'/register'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>Register</NavLink>
 
          </li> 
         
@@ -81,7 +81,7 @@ const Navbar = () => {
 
 
     return ( 
-     <div className="navbar bg-base-100 shadow-sm container mx-auto rounded-md ">
+     <div className="navbar bg-base-100 border-b border-base-300 shadow-sm container mx-auto rounded-md ">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -113,7 +113,8 @@ const Navbar = () => {
   </div>
   <div className="navbar-end gap-5 items-center"> 
      <div className=" ml-5 ">
-      <label className="flex cursor-pointer gap-2">
+      <label className="flex cursor-pointer gap-2"> 
+        <p className='text-base-content'>Theme</p>
   
   <input type="checkbox" value="synthwave" className="toggle theme-controller" checked={theme === "dark"} onChange={() => setTheme(theme === "dark" ? "light" : "dark")} />
   

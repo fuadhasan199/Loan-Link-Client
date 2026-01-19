@@ -53,9 +53,9 @@ const card=location.state?.card
 
  }
  return (
-        <div className='container mx-auto bg-gray-200 p-2 '>
-  <div className="min-h-screen bg-slate-50 py-12 px-4">
- <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-100">
+        <div className='container mx-auto bg-base-100 border border-base-300 p-2 '>
+  <div className="min-h-screen bg-base-100 border  border-base-300 py-12 px-4">
+ <div className="max-w-4xl mx-auto bg-base-content shadow-xl rounded-2xl overflow-hidden border border-base-300">
           <button className='btn btn-primary p-2  rounded-md m-2' onClick={()=>navigate(-1)}><GrLinkPrevious /> Previous page </button>    
          {/* Header Section */}
         <div className="bg-gradient-to-r from-blue-700 to-blue-500 p-8 text-white">
@@ -72,7 +72,7 @@ const card=location.state?.card
                  </h3>
      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 bg-gray-50 p-6 rounded-xl border border-dashed border-gray-300">
                      <div className="form-control">
-         <label className="label text-xs font-bold uppercase text-gray-500">User Email</label>
+         <label className="label text-xs font-bold uppercase text-base-100">User Email</label>
                 <input type="text" value={user?.email} readOnly className="input input-bordered bg-gray-100 text-gray-500 font-medium cursor-not-allowed focus:outline-none" />
                             </div>
     <div className="form-control">
@@ -102,7 +102,7 @@ const card=location.state?.card
                         {/* Last Name */}
                         <div className="form-control">
                             <label className="label font-semibold text-gray-600">Last Name :</label>
-                            <input type="text" {...register('lastName',{required:true})} placeholder=" Khandokar" className="input input-bordered hover:border-blue-400 transition-all" />
+                            <input type="text" {...register('lastName',{required:true})} placeholder="Last Name" className="input input-bordered hover:border-blue-400 transition-all" />
                         </div>
 
                         {/* Contact */}

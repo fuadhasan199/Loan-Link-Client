@@ -15,7 +15,7 @@ const Profile = () => {
 
 
     return (
-        <div className='container mx-auto shadow-lg rounded-md  bg-gray-100 mt-2 p-2'> 
+        <div className='container mx-auto shadow-lg rounded-md  bg-base-100 border-base-300 mt-2 p-2'> 
 
 
 
@@ -31,7 +31,7 @@ const Profile = () => {
 <h2 className='text-center mt-3 font-bold'>Name: {user?.displayName || user?.name}</h2>
 <p className='text-center'>Email: {user?.email}</p>
 
-           <p className="text-sm text-center mt-2 text-gray-700">
+           <p className="text-sm text-center mt-2 text-primary ">
         User ID: {user.uid}
       </p>
 

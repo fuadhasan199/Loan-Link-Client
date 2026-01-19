@@ -5,13 +5,13 @@ const AllLoans = () => {
     const cards=useLoaderData() 
     
     return (
-        <div className='container mx-auto bg-gray-100 text-center rounded-lg p-6'> 
+        <div className='container mx-auto bg-base-100 border-base-300 text-center rounded-lg p-6'> 
         <h1 className='font-bold text-4xl p-2 mt-1'>Explore Our Flexible Microloans</h1> 
         <p className='font-semibold'>We offer a variety of microloans tailored to support small businesses, education, and emergency needs with minimal documentation and fast approval.</p> 
             
        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 p-3">
                 {cards.map((card)=>(
-        <div className="card bg-base-100 w-96 shadow-sm">
+        <div className="max-w-md mx-auto mt-10 p-6 rounded-lg bg-base-200 border border-base-300">
   <figure>
     <img className='w-[350px] h-[250px] p-2 rounded-xl'
       src={card.image}

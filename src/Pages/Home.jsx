@@ -21,7 +21,7 @@ const Home = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3"> 
 
     {cards.slice(0,6).map((card)=>(
-        <div className="card bg-base-100 w-96 shadow-sm">
+        <div className="max-w-md mx-auto mt-10 p-6 rounded-lg bg-base-200 border border-base-300">
   <figure>
     <img className='w-[350px] h-[250px]'
       src={card.image}
