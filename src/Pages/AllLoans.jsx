@@ -11,7 +11,7 @@ const AllLoans = () => {
             
        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 p-3">
                 {cards.map((card)=>(
-        <div className="max-w-md mx-auto mt-10 p-6 rounded-lg bg-base-200 border border-base-300">
+        <div className="card bg-base-100 w-96 shadow-sm border border-base-400"key={card._id}>
   <figure>
     <img className='w-[350px] h-[250px] p-2 rounded-xl'
       src={card.image}

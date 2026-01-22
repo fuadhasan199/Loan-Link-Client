@@ -31,10 +31,11 @@ const AddLoans = () => {
         Swal.fire({
            title: "Success",
            icon: "success",
-            text:'Loan Added Successfully',
-          draggable: true
+        confirmButtonText:"OK"
 });
-      }
+      } 
+           reset() 
+         
 
 
 
@@ -43,7 +44,7 @@ const AddLoans = () => {
 
 
 
-         reset() 
+    
       }
 
 
