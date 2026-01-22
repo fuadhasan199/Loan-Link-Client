@@ -1,7 +1,60 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Swal from 'sweetalert2';
+import UseAuth from '../Auth/UseAuth';
+import axios from 'axios';
 
 const ManageLoan = () => { 
+ 
+
+const {user}=UseAuth()
+const [loan, setLoan]=React.useState([])
+
+useEffect(()=>{
+ if(user?.email){
+
+  axios.get(`http://localhost:3000/availableloan/manager/${user?.email}`)
+  .then(res=>{
+    setLoan(res.data)
+
+  })
+ }
+},[user?.email]) 
+
+
+const handleDelete=(id)=>{ 
+
+Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) { 
+axios.delete(`http://localhost:3000/availableloan/${id}`)
+.then(res=>{
+    if(res.data.deletedCount >0){ 
+          Swal.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "success"
+    }); 
+    const remain=loan.filter(lon=>lon._id !==id) 
+    setLoan(remain)
+  }
+        
+    } ) }
+})
+
+
+
+  
+   
+  
+}
+
 
  const openModal=()=>{
      document.getElementById('my_modal_5').showModal()
@@ -10,7 +63,9 @@ const ManageLoan = () => {
 
 
     return (
-        <div className='container mx-auto p-3 rounded-md'>
+        <div className='container mx-auto p-3 rounded-md'> 
+
+           <h2 className='text-2xl p-3 text-base-content font-bold'>Manager Added Loans : {loan.length}</h2>
             <div className="overflow-x-auto">
   <table className="table">
     {/* head */}
@@ -27,55 +82,47 @@ const ManageLoan = () => {
       </tr>
     </thead>
     <tbody>
-      {/* row 1 */}
-      <tr>
-        <th> <p>#</p> </th>
+      {/* row 1 */} 
+
+       {loan.map((loan,index)=>(
+          
+     <tr key={loan._id}>
+        <th> <p>{index+1}</p> </th>
         <td>
           <div className="flex items-center gap-3">
             <div className="avatar">
               <div className="mask mask-squircle h-12 w-12">
                 <img
-                  src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                  alt="Avatar Tailwind CSS Component" />
+                  src={loan.image}
+                  alt="data not loded" />
               </div>
             </div>
             
           </div>
         </td>
         <td>
-          Title here
+          {loan.title}
           <br />
         
         </td>
-        <td>5%</td>
+        <td>{loan.interest}%</td>
         <th>
-          Category here
+          {loan.category}
         </th> 
         <th>
             <div className="flex item-center gap-2 "> 
                  <button className='btn btn-primary rounded-xl hover:bg-green-500' onClick={openModal}>Update</button>
-                <button className='btn btn-primary rounded-xl hover:btn-secondary ' onClick={()=>{
-                    Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
-    Swal.fire({
-      title: "Deleted!",
-      text: "Your file has been deleted.",
-      icon: "success"
-    });
-  }
-});
-                }}>Delete</button>
+                <button className='btn btn-primary rounded-xl hover:btn-secondary ' 
+
+               onClick={()=>handleDelete(loan._id)}>Delete</button>
+                
             </div>
         </th>
       </tr>
+
+
+       ))}
+      
      
    
     
@@ -84,7 +131,7 @@ const ManageLoan = () => {
    
 
   </table> 
-
+                 {/* modal body here */}
                 <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
            <div className="modal-box">
             <h3 className="font-bold text-lg">Hello!</h3>
