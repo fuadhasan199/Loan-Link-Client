@@ -44,7 +44,7 @@ import Theme from './Extra-Components/Theme.jsx'
        {
           path:'/all-loans',
           element: <AllLoans></AllLoans>,
-           loader:()=>fetch('http://localhost:3000/availableloan')
+          
        }, 
         {
          path:'/details/:id',

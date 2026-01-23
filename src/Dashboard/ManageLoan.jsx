@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import UseAuth from '../Auth/UseAuth';
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
 
 const ManageLoan = () => { 
- 
-
+ const {register,handleSubmit,reset}=useForm()
 const {user}=UseAuth()
 const [loan, setLoan]=React.useState([])
-
+const [selectedloan,setSelectedloan]=useState(null)
 useEffect(()=>{
  if(user?.email){
 
@@ -48,19 +48,53 @@ axios.delete(`http://localhost:3000/availableloan/${id}`)
     } ) }
 })
 
+} 
 
 
-  
-   
-  
+const handleUpdate=async(data)=>{ 
+  console.log("selectedloan:", selectedloan)
+
+const updateInfo = {
+  title: data.title,
+  interestRate: data.interestRate,
+  category: data.category,
+  maxlimit: data.maxLimit
 }
 
+     try{
+       const response=await axios.patch(`http://localhost:3000/availableloan/${selectedloan._id}`,updateInfo)
+     
+       if(response.data.modifiedCount >0){
+         Swal.fire({
+         title: "The Loan has been updated..!",
+          icon: "success",
+          draggable: true 
+});
+       } 
 
- const openModal=()=>{
+       const updatedLoans=loan.map(lon=>lon._id ===selectedloan._id ? {...lon,...updateInfo}:lon)
+     
+     
+     
+     
+      setLoan(updatedLoans)
+      document.getElementById('my_modal_5').close()
+     
+      } 
+
+
+
+
+     catch(error){
+        console.log(error.message)
+     }
+}
+
+ const openModal=(loanData)=>{ 
+  setSelectedloan(loanData)
+  reset(loanData)
      document.getElementById('my_modal_5').showModal()
  }
-
-
 
     return (
         <div className='container mx-auto p-3 rounded-md'> 
@@ -111,8 +145,8 @@ axios.delete(`http://localhost:3000/availableloan/${id}`)
         </th> 
         <th>
             <div className="flex item-center gap-2 "> 
-                 <button className='btn btn-primary rounded-xl hover:bg-green-500' onClick={openModal}>Update</button>
-                <button className='btn btn-primary rounded-xl hover:btn-secondary ' 
+                 <button className='btn btn-primary rounded-xl hover:bg-green-500' onClick={()=>openModal(loan)}>Update</button>
+                <button className='btn btn-secondary rounded-xl  ' 
 
                onClick={()=>handleDelete(loan._id)}>Delete</button>
                 
@@ -123,26 +157,54 @@ axios.delete(`http://localhost:3000/availableloan/${id}`)
 
        ))}
       
-     
-   
-    
-    
     </tbody>
    
 
   </table> 
                  {/* modal body here */}
-                <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-           <div className="modal-box">
-            <h3 className="font-bold text-lg">Hello!</h3>
-              <p className="py-4">Press ESC key or click the button below to close</p>
-               <div className="modal-action">
-              <form method="dialog">
-        {/* if there is a button in form, it will close the modal */}
-        <button className="btn">Close</button>
-      </form>
+ <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+    <div className="modal-box">
+        <h3 className="font-bold text-lg mb-4 text-center">Update Loan Details</h3>
+        
+        
+        <form onSubmit={handleSubmit(handleUpdate)} className="space-y-4">
+            
+            {/* Title */}
+            <div className="form-control">
+                <label className="label font-semibold">Loan Title</label>
+                <input type="text" {...register("title")} className="input input-bordered" required />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+                {/* Interest Rate */}
+                <div className="form-control">
+                    <label className="label font-semibold">Interest (%)</label>
+                    <input type="number" step="0.01" {...register("interestRate")} className="input input-bordered" required />
+                </div>
+
+                {/* Max Limit */}
+                <div className="form-control">
+                    <label className="label font-semibold">Max Limit</label>
+                    <input type="number" {...register("maxLimit")} className="input input-bordered" required />
+                </div>
+            </div>
+
+            {/* Category */}
+            <div className="form-control">
+                <label className="label font-semibold">Category</label>
+                <select {...register("category")} className="select select-bordered" required>
+                    <option value="Personal">Personal</option>
+                    <option value="Business">Business</option>
+                    <option value="Education">Education</option>
+                </select>
+            </div>
+
+            <div className="modal-action">
+                <button type="submit" className="btn btn-primary ">Save Changes</button>
+                <button type="button" className="btn btn-secondary" onClick={() => document.getElementById('my_modal_5').close()}>Cancel</button>
+            </div>
+        </form>
     </div>
-  </div>
 </dialog>
 </div>
         </div>
