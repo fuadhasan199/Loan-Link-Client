@@ -42,7 +42,7 @@ setloading(false)
         <th>Income</th>
         <th>Loan Amount</th>
         <th>Status</th>
-        <th>Payment</th>
+    
         <th>Apply Date</th>
       </tr>
     </thead>
@@ -64,7 +64,7 @@ setloading(false)
       <td>{loan.income}</td>
       <td>{loan.loanAmount}</td>
       <td>{loan.status}</td>
-      <td>{loan.paymentStatus}</td>
+      
       <td>{loan.applicationDate}</td>
     </tr>
   ))}
