@@ -14,7 +14,9 @@ useEffect(() => {
   
  setmyloan([]) 
 setloading(false) 
-  return } 
+  return 
+
+} 
 
 
     setloading(true)
@@ -23,6 +25,7 @@ setloading(false)
       setmyloan(res.data) 
       setloading(false)
     }) 
+    
     .catch(()=>{
        setloading(false)
     })

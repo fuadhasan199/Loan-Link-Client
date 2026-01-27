@@ -142,7 +142,7 @@ const Dashboard = () => {
 
                 <>
                     <li>
-            <Link to={'/dashboard/manage-user'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            <Link to={'/dashboard/manage-user'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="manage-user">
              <MdManageAccounts className='items-center' />
             <span className="is-drawer-close:hidden"> Manage User</span>
             </Link> 
@@ -150,8 +150,8 @@ const Dashboard = () => {
 
 
 
-                          <li>
-            <Link to={'/dashboard/all-system-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="my-loan">
+            <li>
+            <Link to={'/dashboard/all-system-loan'} className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-2 " data-tip="all-system-loan">
             <MdFormatListBulletedAdd className='items-center' />
             <span className="is-drawer-close:hidden"> All System Loan</span>
             </Link> 

@@ -1,14 +1,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import {  Link } from 'react-router';
+import {  Link, useNavigate } from 'react-router';
 import UseAuth from '../Auth/UseAuth';
 import { GoogleAuthProvider } from 'firebase/auth';
 
 const LogIn = () => { 
-  const {register,handleSubmit,formState: { errors }}=useForm()   
+  const {register,handleSubmit,formState: { errors }}=useForm()
+  const navigate=useNavigate()
 
   const {logInUser,googleSignIn}=UseAuth() 
+
+
 
  
 
@@ -19,7 +22,8 @@ const LogIn = () => {
         const result=await logInUser(data.email,data.password) 
         console.log(result.user)
  toast.success('successfully Login')
- e.target.reset()
+ e.target.reset() 
+  navigate('/')
       }
    catch{
   toast.error("Login failed")
@@ -31,7 +35,8 @@ const LogIn = () => {
     try{
      const result=await googleSignIn() 
      console.log(result.user)
-      toast.success('successfully Login')
+      toast.success('successfully Login') 
+      navigate('/')
     } 
     catch(error){
       toast.error(error.message)

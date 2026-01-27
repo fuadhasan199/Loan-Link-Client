@@ -20,6 +20,7 @@ const AddLoans = () => {
         image: data.image,
         shortDesc: data.shortDesc,
         description: data.description,
+        showOnHome:false,
        createdAt: new Date().toLocaleDateString(),
        createdBy: user?.email
 
@@ -36,17 +37,7 @@ const AddLoans = () => {
       } 
            reset() 
          
-
-
-
-
-
-
-
-
-    
       }
-
 
     return (
         <div className='container mx-auto bg-base-100 border border-base-300 text-base-content rounded-md mt-1 p-3 min-h-screen  '> 
