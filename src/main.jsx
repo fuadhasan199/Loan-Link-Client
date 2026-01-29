@@ -25,6 +25,7 @@ import AllSysytemLoan from './Dashboard/AllSysytemLoan.jsx'
 import About from './Extra-Components/About.jsx'
 import Contack from './Extra-Components/Contack.jsx'
 import Theme from './Extra-Components/Theme.jsx'
+import UpdateUser from './Dashboard/UpdateUser.jsx'
 
 
 
@@ -117,6 +118,10 @@ import Theme from './Extra-Components/Theme.jsx'
          { 
           path:'all-system-loan',
           element:<AllSysytemLoan></AllSysytemLoan>
+         },
+         {
+          path:'Update-Users/:id',
+          element:<UpdateUser></UpdateUser>
          }
         ]
        } 

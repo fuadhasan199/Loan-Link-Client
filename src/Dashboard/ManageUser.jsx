@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const ManageUser = () => { 
+  const navigate=useNavigate()
  const [users,setUsers]=useState([]) 
 
  useEffect(()=>{ 
@@ -35,17 +37,13 @@ const ManageUser = () => {
         <th>{index+1}</th>
         <td>{user.name}</td>
         <td>{user.email}</td>
-        <td>{user.role}</td> 
-        <td className='btn'>Update</td>
+        <td
+        >{user.role}</td> 
+        <td className='btn p-5 btn-active' onClick={()=>navigate(`/dashboard/Update-Users/${user._id}`)} >Update</td>
       </tr>
 
 
      ))}
-
-
-     
-  
-        
     </tbody>
   </table>
 </div>
