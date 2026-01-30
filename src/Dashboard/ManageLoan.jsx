@@ -74,16 +74,10 @@ const updateInfo = {
 
        const updatedLoans=loan.map(lon=>lon._id ===selectedloan._id ? {...lon,...updateInfo}:lon)
      
-     
-     
-     
       setLoan(updatedLoans)
       document.getElementById('my_modal_5').close()
      
       } 
-
-
-
 
      catch(error){
         console.log(error.message)
@@ -193,9 +187,9 @@ const updateInfo = {
             <div className="form-control">
                 <label className="label font-semibold">Category</label>
                 <select {...register("category")} className="select select-bordered" required>
-                    <option value="Personal">Personal</option>
-                    <option value="Business">Business</option>
-                    <option value="Education">Education</option>
+                    <option value="Personal">Personal</option> 
+                    <option value="Business">Business</option> 
+                    <option value="Education">Education</option> 
                 </select>
             </div>
 

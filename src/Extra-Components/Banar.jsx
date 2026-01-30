@@ -6,7 +6,7 @@ const Banar = () => {
   const navigate=useNavigate()
     return (
         <div className='container mx-auto'>
- <div className="hero bg-base-200 min-h-screen rounded-xl" 
+ <div className="hero bg-base-200 p-22 mt-2 rounded-xl" 
      style={{
     backgroundImage: "url('https://i.ibb.co.com/HfHFvvqK/loan.jpg')",
     backgroundSize: 'cover',

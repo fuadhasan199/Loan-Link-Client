@@ -20,7 +20,7 @@ const AddLoans = () => {
         image: data.image,
         shortDesc: data.shortDesc,
         description: data.description,
-        showOnHome:false,
+       showOnHomePage:data.showOnHomePage ||false,
        createdAt: new Date().toLocaleDateString(),
        createdBy: user?.email
 
@@ -87,7 +87,12 @@ const AddLoans = () => {
                     <div className="form-control md:col-span-2 w-fit">
                         <label className="label text-base-content">Description</label>
                         <textarea name="description" className="textarea textarea-bordered h-24" {...register('description',({required:true}))} placeholder='Description'></textarea>
-                    </div>
+                    </div> 
+                    <label className=''>
+                        Show on Home Page <input type="checkbox"{...register('showOnHomePage')} defaultChecked className="checkbox checkbox-xl" />
+                    </label>
+
+                    
 
                     <div className="form-control w-fit">
                         <label className="label cursor-pointer gap-4">

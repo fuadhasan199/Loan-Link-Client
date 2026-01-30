@@ -1,26 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Banar from '../Extra-Components/Banar';
-import { Link, useLoaderData } from 'react-router';
+import { Link } from 'react-router';
 import HowitWork from '../Extra-Components/HowitWork';
 import Feedback from '../Extra-Components/Feedback';
+import axios from 'axios';
 
 
 const Home = () => { 
    
- const cards=useLoaderData()
+const [cards,setcards]=useState([]) 
 
-
+ useEffect(()=>{
+    axios.get(`http://localhost:3000/home-loans`)
+    .then(res=>{
+       setcards(res.data)
+    })
+ },[])
     
     return (
         <div className='container mx-auto '>
       <Banar></Banar> 
 
   <div className="mt-5">
-    <h1 className='text-2xl font-bold p-2'>Available Loans : 6</h1> 
+    <h1 className='text-2xl font-bold p-2'>Available Loans : {cards.length}</h1> 
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3"> 
 
-    {cards.slice(0,6).map((card)=>(
+    {cards.map((card)=>(
         <div className="card  w-96 shadow-sm bg-base-200 border border-base-300">
   <figure>
     <img className='w-[350px] h-[250px]'

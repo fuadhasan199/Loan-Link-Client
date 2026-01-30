@@ -1,9 +1,74 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Navigate, useNavigate, useParams } from 'react-router';
+import Swal from 'sweetalert2';
 
-const UpdateUser = () => {
+
+const UpdateUser = () => { 
+    const {id}=useParams() 
+    const [userId,setUserID]=useState() 
+    const {register,handleSubmit}=useForm()
+    const Navigate=useNavigate()
+
+
+
+    useEffect(()=>{
+         axios.get(`http://localhost:3000/users`)
+         .then(res=>{
+             const sigleUser=res.data.find(u=>u._id===id)
+             setUserID(sigleUser)
+         })
+    },[id]) 
+    
+    const handleUpdate=async(data)=>{
+         try{
+            const res=await axios.patch(`http://localhost:3000/users/${id}`,{role:data.role})
+              if(res.data.modifiedCount >0){
+                  Swal.fire({
+                    title: "Success",
+                    text: "User role updated successfully!",
+                    icon: "success",
+                    
+                }); 
+                Navigate('/dashboard/manage-user')
+              } 
+                   
+              
+         } 
+         catch(error){
+              Swal.fire({
+                  title: "Error",
+                  text: error.message || "Failed to update user role.",
+                  icon: "error",
+                
+              })
+         }
+    }
+ 
+   if(!userId){
+       return <span className="loading loading-spinner loading-2xl items-center justify-center"></span>
+   }
+
     return (
-        <div>
-            this is update user page
+        <div className='container mx-auto bg-base-200 p-5 rounded-md'>
+           <h1 className='text-xl text-center mb-5 mt-5'> <span className='font-bold text-2xl'>{userId?.name}</span> Role Update Page</h1> 
+           <hr />  
+
+           <form  className="space-y-4 p-12" onSubmit={handleSubmit(handleUpdate)}>
+                <div className="form-control">
+                    <label className="label p-5">Current Role: <span className="badge badge-success">{userId?.role}</span></label>
+                    <select {...register('role',{required:true})} name="role" className="select select-bordered w-full" defaultValue={userId?.role}>
+                        <option value="borrower">borrower</option>
+                        <option value="manager">manager</option>
+                        <option value="admin">admin</option>
+                        <option value="suspended">Suspended</option> 
+                    </select>
+                </div>
+                <button type="submit" className="btn btn-primary w-full  text-white">Update Status</button>
+            </form>
+
+
         </div>
     );
 };

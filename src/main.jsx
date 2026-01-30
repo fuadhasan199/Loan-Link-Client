@@ -40,7 +40,7 @@ import UpdateUser from './Dashboard/UpdateUser.jsx'
        {
         index:true, 
         element:<Home></Home>,
-        loader:()=>fetch('http://localhost:3000/availableloan')
+        
        } , 
        {
           path:'/all-loans',
