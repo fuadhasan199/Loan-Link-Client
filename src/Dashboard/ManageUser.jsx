@@ -25,6 +25,7 @@ const ManageUser = () => {
         <th>Name</th>
         <th>Email</th>
         <th>Role</th> 
+        <th>Status</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -37,8 +38,14 @@ const ManageUser = () => {
         <th>{index+1}</th>
         <td>{user.name}</td>
         <td>{user.email}</td>
+        
         <td
         >{user.role}</td> 
+        <td>
+        <span className={`badge ${user.status === 'pending' ? 'badge-error' : 'badge-success'}`}>
+          {user.status || 'active'}
+        </span>
+      </td>
         <td className='btn p-5 btn-active' onClick={()=>navigate(`/dashboard/Update-Users/${user._id}`)} >Update</td>
       </tr>
 

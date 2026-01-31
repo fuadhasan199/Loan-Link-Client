@@ -23,7 +23,9 @@ const UpdateUser = () => {
     
     const handleUpdate=async(data)=>{
          try{
-            const res=await axios.patch(`http://localhost:3000/users/${id}`,{role:data.role})
+            const res=await axios.patch(`http://localhost:3000/users/update/${id}`,{role:data.role,
+                status:data.status
+            })
               if(res.data.modifiedCount >0){
                   Swal.fire({
                     title: "Success",
@@ -64,7 +66,16 @@ const UpdateUser = () => {
                         <option value="admin">admin</option>
                         <option value="suspended">Suspended</option> 
                     </select>
-                </div>
+                </div> 
+              <div className="form-control">
+        <label className="label font-bold">Account Status:</label>
+        <select {...register('status')} className="select select-bordered w-full" defaultValue={userId?.status}>
+            <option value="active"> Approve</option>
+            <option value="pending">Pending</option>
+            <option value="suspended">Suspended</option>
+        </select>
+    </div>
+
                 <button type="submit" className="btn btn-primary w-full  text-white">Update Status</button>
             </form>
 

@@ -37,11 +37,11 @@ const Register = () => {
 
       
         const userInfo = {
-            name: data.name,
+            name: data.name, 
             email: data.email,
             photo: photoLink, 
             role: data.role,
-            status: 'active'
+            status: data.role ==='manager' ? 'pending' : 'active'
         };
 
         const userRes = await axios.post('http://localhost:3000/users', userInfo);

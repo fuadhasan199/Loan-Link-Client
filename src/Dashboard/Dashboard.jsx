@@ -13,6 +13,7 @@ const Dashboard = () => {
   const {user}=UseAuth()
   const [role,setRole]=useState(null) 
   const [loading ,setLoading]=useState(true) 
+  const [status,setStatus]=useState(null)
 
 
    useEffect(()=>{
@@ -20,7 +21,9 @@ const Dashboard = () => {
     if(user?.email){ 
        setLoading(true)
        axios.get(`http://localhost:3000/users/role/${user.email}`) 
-       .then(res=>{setRole(res.data.role)
+       .then(res=>
+        {setRole(res.data.role)
+        setStatus(res.data.status)
         setLoading(false)
        }) 
        .catch(()=>{ 
@@ -29,6 +32,20 @@ const Dashboard = () => {
     } 
    
    },[user?.email]) 
+   
+   if(role==='manager' && status==='pending'){
+       return (
+          <div className="text-center mt-5 min-h-screen font-bold p-5"> 
+          <h2 className='font-bold text-red-500 text-center text-4xl'>Access Denied !  </h2> 
+           
+           <p className='mt-5  '>You are not authorized to access this page , waiting for admin aprove</p>  
+            <Link to={'/'} className='btn btn-primary mt-5'>Go to Home</Link>   
+          </div> 
+         
+       ) 
+
+   }
+
    if(loading){ 
      return <div className="flex justify-center items-center min-h-screen"> 
            <span className="loading loading-dots loading-xl"></span>

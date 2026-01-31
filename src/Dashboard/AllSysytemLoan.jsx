@@ -84,7 +84,7 @@ const AllSysytemLoan = () => {
             <span className="badge badge-ghost p-3">Hidden</span>
                 }</th> 
                 <th>
-        <button className="btn btn-sm btn-outline" onClick={()=>handleHome(loan._id,loan.showOnHome)}>{loan.showOnHome ? "Remove from Home" : "Add to Home"}</button>
+        <button className="btn btn-sm btn-outline p-3" onClick={()=>handleHome(loan._id,loan.showOnHome)}>{loan.showOnHome ? "Remove from Home" : "Add to Home"}</button>
                 </th>
       </tr> 
         ))}
