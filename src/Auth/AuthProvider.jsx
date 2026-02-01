@@ -7,6 +7,7 @@ const AuthProvider = ({children}) => {
 
     const googleProvider=new GoogleAuthProvider() 
     const [user,setUser]=useState(null) 
+    const [loading,setloading]=useState(true)
 
   
 const registerUser=(email,password)=>{
@@ -33,8 +34,17 @@ const SignOutUser=()=>{
 
 
 useEffect(()=>{
-    const unsubcribe=onAuthStateChanged(auth,(currentUser)=>{
-        setUser(currentUser)
+    const unsubcribe=onAuthStateChanged(auth, async(currentUser)=>{
+        setUser(currentUser) 
+         setloading(true)
+        if(currentUser){
+             const token=await currentUser.getIdToken()
+             localStorage.setItem('token',token) 
+        } 
+        else {
+             localStorage.removeItem('token')
+        } 
+         setloading(false)
     }) 
     return ()=>{
         unsubcribe()
@@ -43,7 +53,8 @@ useEffect(()=>{
 
 
 const authInfo={ 
-    user,
+    user, 
+    loading,
     registerUser,
     logInUser,
     googleSignIn,

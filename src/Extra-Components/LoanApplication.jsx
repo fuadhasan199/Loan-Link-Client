@@ -16,7 +16,8 @@ const LoanApplication = () => {
 const location=useLocation()
 const card=location.state?.card
       
- const onsubmit=async(data)=>{
+ const onsubmit=async(data)=>{ 
+  const token=localStorage.getItem('token')
      
      const applicationInfo={
          ...data, 
@@ -31,7 +32,11 @@ const card=location.state?.card
      } 
 
     try{ 
-        const response= await axios.post('http://localhost:3000/apply-loan',applicationInfo) 
+        const response= await axios.post('http://localhost:3000/apply-loan',applicationInfo,{
+           headers:{
+             Authorization:`Bearer ${token}`
+           }
+        }) 
         if(response.data.insertedId){
             Swal.fire({
                 title: "Application Submitted Seccessfully",

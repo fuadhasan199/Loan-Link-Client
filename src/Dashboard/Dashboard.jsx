@@ -19,8 +19,13 @@ const Dashboard = () => {
    useEffect(()=>{
    
     if(user?.email){ 
-       setLoading(true)
-       axios.get(`http://localhost:3000/users/role/${user.email}`) 
+       setLoading(true) 
+       const token=localStorage.getItem('token')
+       axios.get(`http://localhost:3000/users/role/${user.email}`,{
+         headers:{
+           Authorization:`Bearer ${token}`
+         }
+       }) 
        .then(res=>
         {setRole(res.data.role)
         setStatus(res.data.status)
