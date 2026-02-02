@@ -20,13 +20,17 @@ const LogIn = () => {
 
       try{ 
         const result=await logInUser(data.email,data.password) 
-        console.log(result.user)
+       
+        const token=await result.user.getIdToken()
+        localStorage.setItem('access-token',token) 
+ console.log(result.user)
+        
  toast.success('successfully Login')
  e.target.reset() 
   navigate('/')
       }
-   catch{
-  toast.error("Login failed")
+   catch(error){
+  toast.error(error.message)
    }
     
   } 
@@ -34,7 +38,9 @@ const LogIn = () => {
   const handleGoogleLogIn=async()=>{
     try{
      const result=await googleSignIn() 
-     console.log(result.user)
+     const token=await result.user.getIdToken() 
+     localStorage.setItem('access-token',token) 
+
       toast.success('successfully Login') 
       navigate('/')
     } 

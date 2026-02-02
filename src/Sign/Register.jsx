@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router';
 import UseAuth from '../Auth/UseAuth';
 import axios from 'axios';
+import { auth } from '../Firebase/Firebase.config';
 
 
 const Register = () => { 
@@ -33,7 +34,11 @@ const Register = () => {
         await registerUser(data.email, data.password);
 
         
-        await updateUserProfile(data.name, photoLink);
+        await updateUserProfile(data.name, photoLink); 
+        
+        const users=auth.currentUser 
+        const token=await users.getIdToken()
+         localStorage.setItem('access-token',token)
 
       
         const userInfo = {
@@ -42,9 +47,10 @@ const Register = () => {
             photo: photoLink, 
             role: data.role,
             status: data.role ==='manager' ? 'pending' : 'active'
-        };
+        }; 
+         
 
-        const userRes = await axios.post('http://localhost:3000/users', userInfo);
+        const userRes = await axios.post(`https://loan-link-server-nine.vercel.app/users`, userInfo);
         
         if (userRes.data.insertedId) {
             toast.success('Registration and Profile Sync Successful!');
@@ -62,6 +68,8 @@ const handleGoogleSignIn = async () => {
   try { 
   
    const result = await googleSignIn();
+   const token=await result.user.getIdToken()
+    localStorage.setItem('access-token',token)
     const user = result.user;
 
     
@@ -73,7 +81,7 @@ const handleGoogleSignIn = async () => {
       status: 'active'
     }; 
 
-  await axios.post('http://localhost:3000/users', userInfo);
+  await axios.post('https://loan-link-server-nine.vercel.app/users', userInfo);
     
     toast.success("Login Successful!");
   } catch (error) {
@@ -126,7 +134,7 @@ const handleGoogleSignIn = async () => {
           <label className='label'>Role</label>
           <select className='select select-bordered w-full' {...register('role')}   >  
 
-         <option value="borrower">borrower</option>
+         <option value="borrower">borrower/user</option>
          <option value="manager">manager</option>
 
           </select>

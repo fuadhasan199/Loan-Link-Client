@@ -7,7 +7,7 @@ const ManageUser = () => {
  const [users,setUsers]=useState([]) 
 
  useEffect(()=>{ 
-    axios.get(`http://localhost:3000/users`)
+    axios.get(`https://loan-link-server-nine.vercel.app/users`)
     .then(res=>setUsers(res.data)) 
 
  },[])

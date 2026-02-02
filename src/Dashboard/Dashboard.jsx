@@ -21,9 +21,9 @@ const Dashboard = () => {
     if(user?.email){ 
        setLoading(true) 
        const token=localStorage.getItem('token')
-       axios.get(`http://localhost:3000/users/role/${user.email}`,{
+       axios.get(`https://loan-link-server-nine.vercel.app/users/role/${user.email}`,{
          headers:{
-           Authorization:`Bearer ${token}`
+           authorization:`Bearer ${token}`
          }
        }) 
        .then(res=>

@@ -50,7 +50,12 @@ import UpdateUser from './Dashboard/UpdateUser.jsx'
         {
          path:'/details/:id',
          element: <PrivateRoute> <ViewDetails></ViewDetails> </PrivateRoute>  ,
-         loader:({params})=>fetch(`http://localhost:3000/availableloan/${params.id}`)
+         loader:({params})=>fetch(`https://loan-link-server-nine.vercel.app/availableloan/${params.id}`,{
+            headers:{ 
+              authorization:`Bearer ${localStorage.getItem('access-token')}`
+              
+            }
+         })
        },
      
        {

@@ -35,14 +35,18 @@ const SignOutUser=()=>{
 
 useEffect(()=>{
     const unsubcribe=onAuthStateChanged(auth, async(currentUser)=>{
-        setUser(currentUser) 
-         setloading(true)
-        if(currentUser){
+        
+        
+        if(currentUser){ 
+            setUser(currentUser)
              const token=await currentUser.getIdToken()
-             localStorage.setItem('token',token) 
+             localStorage.setItem('token',token)  
+             setloading(false)
         } 
         else {
-             localStorage.removeItem('token')
+            setUser(null)
+             localStorage.removeItem('token') 
+             setloading(false)
         } 
          setloading(false)
     }) 

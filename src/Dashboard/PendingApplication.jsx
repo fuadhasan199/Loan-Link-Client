@@ -7,7 +7,7 @@ const PendingApplication = () => {
 const [applications,setApplications]=useState([]) 
 
 useEffect(()=>{ 
-    axios.get(`http://localhost:3000/loan-applications`)
+    axios.get(`https://loan-link-server-nine.vercel.app/loan-applications`)
     .then(res=>{
         const pending=res.data.filter(app=>app.status==='pending')
         setApplications(pending)
@@ -16,7 +16,7 @@ useEffect(()=>{
 },[])
  
 const handleUpdate=(id,status)=>{
-     axios.patch(`http://localhost:3000/loan-applications/${id}`,{status:status})
+     axios.patch(`https://loan-link-server-nine.vercel.app/loan-applications/${id}`,{status:status})
      .then(res=>{
          if(res.data.modifiedcount >0){
              Swal.fire("Success", `Loan ${status} Successfully!`, "success")

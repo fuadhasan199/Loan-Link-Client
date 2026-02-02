@@ -32,9 +32,9 @@ const card=location.state?.card
      } 
 
     try{ 
-        const response= await axios.post('http://localhost:3000/apply-loan',applicationInfo,{
+        const response= await axios.post('https://loan-link-server-nine.vercel.app/apply-loan',applicationInfo,{
            headers:{
-             Authorization:`Bearer ${token}`
+             authorization:`Bearer ${token}`
            }
         }) 
         if(response.data.insertedId){

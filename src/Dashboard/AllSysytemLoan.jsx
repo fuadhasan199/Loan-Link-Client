@@ -7,12 +7,12 @@ const AllSysytemLoan = () => {
 
 
      useEffect(()=>{
-       axios.get(`http://localhost:3000/availableloan`)
+       axios.get(`https://loan-link-server-nine.vercel.app/availableloan`)
        .then(res=>setLoans(res.data))
      },[]) 
 
      const handleHome=async(id,currentStatus)=>{
-         axios.patch(`http://localhost:3000/availableloan/show-on-home/${id}`,{showOnHome:!currentStatus})
+         axios.patch(`https://loan-link-server-nine.vercel.app/availableloan/show-on-home/${id}`,{showOnHome:!currentStatus})
          .then(res=>{
               if(res.data.modifiedCount >0){
                 Swal.fire({

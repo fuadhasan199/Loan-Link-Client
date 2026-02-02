@@ -11,7 +11,7 @@ const Home = () => {
 const [cards,setcards]=useState([]) 
 
  useEffect(()=>{
-    axios.get(`http://localhost:3000/home-loans`)
+    axios.get(`https://loan-link-server-nine.vercel.app/home-loans`)
     .then(res=>{
        setcards(res.data)
     })

@@ -14,7 +14,7 @@ const UpdateUser = () => {
 
 
     useEffect(()=>{
-         axios.get(`http://localhost:3000/users`)
+         axios.get(`https://loan-link-server-nine.vercel.app/users`)
          .then(res=>{
              const sigleUser=res.data.find(u=>u._id===id)
              setUserID(sigleUser)
@@ -23,7 +23,7 @@ const UpdateUser = () => {
     
     const handleUpdate=async(data)=>{
          try{
-            const res=await axios.patch(`http://localhost:3000/users/update/${id}`,{role:data.role,
+            const res=await axios.patch(`https://loan-link-server-nine.vercel.app/users/update/${id}`,{role:data.role,
                 status:data.status
             })
               if(res.data.modifiedCount >0){

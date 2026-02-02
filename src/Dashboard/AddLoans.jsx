@@ -25,7 +25,7 @@ const AddLoans = () => {
        createdBy: user?.email
 
       } 
-      const res=await axios.post(`http://localhost:3000/availableloan`,loanData) 
+      const res=await axios.post(`https://loan-link-server-nine.vercel.app/availableloan`,loanData) 
 
       if(res.data.insertedId){
          

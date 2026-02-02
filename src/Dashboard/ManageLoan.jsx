@@ -12,7 +12,7 @@ const [selectedloan,setSelectedloan]=useState(null)
 useEffect(()=>{
  if(user?.email){
 
-  axios.get(`http://localhost:3000/availableloan/manager/${user?.email}`)
+  axios.get(`https://loan-link-server-nine.vercel.app/availableloan/manager/${user?.email}`)
   .then(res=>{
     setLoan(res.data)
 
@@ -33,7 +33,7 @@ Swal.fire({
   confirmButtonText: "Yes, delete it!"
 }).then((result) => {
   if (result.isConfirmed) { 
-axios.delete(`http://localhost:3000/availableloan/${id}`)
+axios.delete(`https://loan-link-server-nine.vercel.app/availableloan/${id}`)
 .then(res=>{
     if(res.data.deletedCount >0){ 
           Swal.fire({
@@ -62,7 +62,7 @@ const updateInfo = {
 }
 
      try{
-       const response=await axios.patch(`http://localhost:3000/availableloan/${selectedloan._id}`,updateInfo)
+       const response=await axios.patch(`https://loan-link-server-nine.vercel.app/availableloan/${selectedloan._id}`,updateInfo)
      
        if(response.data.modifiedCount >0){
          Swal.fire({

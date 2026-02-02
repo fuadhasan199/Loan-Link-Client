@@ -12,7 +12,7 @@ const AllLoans = () => {
       const fetchLoans=async()=>{
          try{
            setLoading(true)
-           const response=await axios.get(`http://localhost:3000/availableloan`)
+           const response=await axios.get(`https://loan-link-server-nine.vercel.app/availableloan`)
            setLoans(response.data) 
            setLoading(false)
          } 

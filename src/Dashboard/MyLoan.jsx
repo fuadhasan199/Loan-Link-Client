@@ -9,24 +9,25 @@ const MyLoan = () => {
     const [loading,setloading]=useState(true) 
 
 useEffect(() => {
-  if (!user?.email) {
+  if (!user?.email)  return   
+ 
 
-  
- setmyloan([]) 
-setloading(false) 
-  return 
-
-} 
-
-
-    setloading(true)
-   axios.get(`http://localhost:3000/my-loan/${user.email}`)
+   
+  setloading(true) 
+  const token=localStorage.getItem('access-token')
+   axios.get(`https://loan-link-server-nine.vercel.app/my-loan/${user.email}`,{
+     headers:{
+      authorization:`Bearer ${token}`
+     }
+   })
     .then(res => {
       setmyloan(res.data) 
       setloading(false)
     }) 
     
-    .catch(()=>{
+    .catch((error)=>{ 
+      console.log(error.message) 
+      setmyloan([])
        setloading(false)
     })
   }
