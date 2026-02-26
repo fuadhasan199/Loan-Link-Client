@@ -24,12 +24,12 @@ const [cards,setcards]=useState([])
   <div className="mt-5">
     <h1 className='text-2xl font-bold p-2'>Available Loans : {cards.length}</h1> 
 
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3"> 
+    <div className="grid grid-cols-1 md:grid-cols-3  gap-4 mt-3"> 
 
     {cards.map((card)=>(
-        <div className="card  w-96 shadow-sm bg-base-200 border border-base-300">
+        <div className="card bg-base-100 w-96 shadow-sm border border-base-400"key={card._id}>
   <figure>
-    <img className='w-[350px] h-[250px]'
+    <img className='w-[350px] h-[250px] p-2 rounded-2xl'
       src={card.image}
       alt="not supported" />
   </figure>

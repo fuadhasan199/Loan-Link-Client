@@ -13,8 +13,8 @@ const LoanApplication = () => {
      const {register, handleSubmit,reset}=useForm() 
      const navigate=useNavigate()
     
-const location=useLocation()
-const card=location.state?.card
+const location=useLocation() 
+const card=location.state?.card 
       
  const onsubmit=async(data)=>{ 
   const token=localStorage.getItem('token')
@@ -32,11 +32,13 @@ const card=location.state?.card
      } 
 
     try{ 
-        const response= await axios.post('https://loan-link-server-nine.vercel.app/apply-loan',applicationInfo,{
-           headers:{
-             authorization:`Bearer ${token}`
-           }
-        }) 
+        const response= await axios.post('https://loan-link-server-nine.vercel.app/apply-loan',applicationInfo,
+          // {
+          //  headers:{
+          //    authorization:`Bearer ${token}`
+          //  }
+        // }
+         ) 
         if(response.data.insertedId){
             Swal.fire({
                 title: "Application Submitted Seccessfully",

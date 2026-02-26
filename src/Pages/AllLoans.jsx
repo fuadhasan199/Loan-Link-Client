@@ -21,16 +21,16 @@ const AllLoans = () => {
              setLoading(false)
          }
       } 
-      fetchLoans()
+      fetchLoans() 
 
     },[]) 
 
     if(loading){
-        return <span className="loading loading-ball loading-xl"></span>
+        return <span className="loading loading-ball loading-xl "></span>
     }
 
     return (
-        <div className='container mx-auto bg-base-100 border-base-300 text-center rounded-lg p-6'> 
+        <div className='container mx-auto bg-base-100  text-center rounded-lg p-6'> 
         <h1 className='font-bold text-4xl p-2 mt-1'>Explore Our Flexible Microloans</h1> 
         <p className='font-semibold'>We offer a variety of microloans tailored to support small businesses, education, and emergency needs with minimal documentation and fast approval.</p> 
             
@@ -38,7 +38,7 @@ const AllLoans = () => {
                 {loans.map((loan)=>(
         <div className="card bg-base-100 w-96 shadow-sm border border-base-400"key={loan._id}>
   <figure>
-    <img className='w-[350px] h-[250px] p-2 rounded-xl'
+    <img className='w-[350px] h-[250px] p-2 rounded-2xl'
       src={loan.image}
       alt="not supported" />
   </figure>
