@@ -27,7 +27,7 @@ const [cards,setcards]=useState([])
     <div className="grid grid-cols-1 md:grid-cols-3  gap-4 mt-3"> 
 
     {cards.map((card)=>(
-        <div className="card bg-base-100 w-96 shadow-sm border border-base-400"key={card._id}>
+        <div className="card bg-base-100 w-full shadow-sm border border-base-400"key={card._id}>
   <figure>
     <img className='w-[350px] h-[250px] p-2 rounded-2xl'
       src={card.image}
@@ -56,16 +56,6 @@ const [cards,setcards]=useState([])
     <HowitWork></HowitWork> 
 
   
-
-
-
-
-
-
-    
-
-
-
     </div> 
     
      <Feedback></Feedback> 
