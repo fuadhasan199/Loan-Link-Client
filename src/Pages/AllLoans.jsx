@@ -8,38 +8,48 @@ const AllLoans = () => {
     const[loans,setLoans]=useState([])
     const [loading,setLoading]=useState(true) 
     const [searchTerm,setSearchTerm]=useState('')
-    const [sort,setSort]=useState("")
+    const [sort,setSort]=useState("") 
+    const [currentPage,setCurrentPage]=useState(1)
+    const [totalLoans,setTotalloans]=useState(0) 
+
+    const limit=9
 
 useEffect(() => {
     const fetchLoans = async () => {
-        
-        if (!searchTerm && !sort) {
+       
+        if (!searchTerm && !sort && currentPage === 1) {
             const cachedData = localStorage.getItem('allloans')
             if (cachedData) {
-                setLoans(JSON.parse(cachedData));
+                const parsedData = JSON.parse(cachedData)
+               
+                setLoans(Array.isArray(parsedData) ? parsedData : [])
                 setLoading(false)
                
             }
         }
 
         try {
-         
-            const res = await axios.get(`https://loan-link-server-nine.vercel.app/availableloan?search=${searchTerm}&sort=${sort}`);
-            setLoans(res.data)
-
+            const res = await axios.get(`https://loan-link-server-nine.vercel.app/availableloan?search=${searchTerm}&sort=${sort}&page=${currentPage}&limit=${limit}`);
+            
            
-            if (!searchTerm && !sort) {
-                localStorage.setItem('allloans', JSON.stringify(res.data))
+            const fetchedLoans = res.data.result || []
+            setLoans(fetchedLoans);
+            setTotalloans(res.data.totalLoans || 0)
+
+            
+            if (!searchTerm && !sort && currentPage === 1) {
+                localStorage.setItem('allloans', JSON.stringify(fetchedLoans))
             }
         } catch (error) {
             console.log("Error fetching data:", error)
+            setLoans([])
         } finally {
             setLoading(false)
         }
     };
 
-    fetchLoans()
-}, [searchTerm, sort])
+    fetchLoans();
+}, [searchTerm, sort, currentPage])
 
   if(loading){ 
      return <div className="flex justify-center items-center min-h-screen"> 
@@ -130,7 +140,30 @@ useEffect(() => {
 
 
 
-       </div>
+       </div> 
+
+       {/* Pagination Controls */}
+<div className="flex justify-center items-center gap-4 mt-8 mb-10">
+    <button 
+        className="btn btn-outline btn-primary"
+        disabled={currentPage === 1} // ১ নম্বর পেজে থাকলে Previous বাটন অফ থাকবে
+        onClick={() => setCurrentPage(currentPage - 1)}
+    >
+        « Previous
+    </button>
+
+    <div className="font-bold">
+        Page {currentPage} of {Math.ceil(totalLoans / limit)}
+    </div>
+
+    <button 
+        className="btn btn-outline btn-primary"
+        disabled={currentPage >= Math.ceil(totalLoans / limit)} // শেষ পেজে থাকলে Next বাটন অফ থাকবে
+        onClick={() => setCurrentPage(currentPage + 1)}
+    >
+        Next »
+    </button>
+</div>
 
 
 
