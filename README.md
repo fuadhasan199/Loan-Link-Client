@@ -1,16 +1,65 @@
-# React + Vite
+# 🏦 LoanLink – Microloan Request & Approval Tracker System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**LoanLink** is a comprehensive MERN stack web application designed to streamline the microloan process. It bridges the gap between borrowers and financial organizations by providing a transparent and efficient system for application, review, and approval management.
 
-Currently, two official plugins are available:
+##  Live Links & Resources
+- **Live Site:   https://loanlink-finance.pages.dev/
+- **Client Repo:   https://github.com/fuadhasan199/Loan-Link-Client.git
+- **Server Repo:   https://github.com/fuadhasan199/Loan-Link-server.git
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+##  Tech Stack & Packages Used
+**Frontend:**
+- **Core:** React.js, Tailwind CSS, DaisyUI
+- **Data Fetching:** axios 
+- **Forms:** React Hook Form
+- **State Management:** Firebase Auth (Context API)
+- **Animations:** Framer Motion
+- **Icons & UI:** SweetAlert2, React Toastify .
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Backend:**
+- **Server:** Node.js, Express.js
+- **Database:** MongoDB
+- **Security:** JWT (JSON Web Token), Environment Variables (dotenv)
+
+
+
+##  Key Features
+- **Role-Based Access Control:** Distinct dashboards for Admin, Manager, and Borrower.
+
+- **Smart Data Management:** - **Pagination:** Smooth browsing for large loan datasets.
+  - **Search & Filter:** Instantly find loans by title or category.
+  - **Sorting:** Sort loans based on interest rates or limits.
+- **Theme Toggling:** Switch between Light and Dark modes.
+- **Form Validation:** Robust validation using **React Hook Form**.
+
+- **Real-time Feedback:** SweetAlert2 and Toast notifications for all CRUD operations.
+
+- **Fully Responsive:** Optimized for Mobile, Tablet, and Desktop.
+
+---
+
+## 👥 User Roles & Permissions
+
+### 👑 Admin (The Controller)
+- **Manage Users:** Update user roles (Borrower/Manager) or suspend users with a mandatory reason.
+- **Loan Control:** Add, update, or delete loans. Toggle "Show on Home" status.
+- **Central Tracking:** View and filter all loan applications in the system.
+
+### 💼 Manager (Loan Officer)
+- **Loan Creation:** Create and manage microloans with EMI plans and document requirements.
+- **Application Review:** Approve or Reject pending loan applications with timestamps.
+
+
+### 👤 Borrower (User)
+- **Apply for Loan:** Seamlessly apply for loans with a detailed application form.
+
+- **My Loans:** Track application status (Pending, Approved, Rejected) and view payment history.
+- **Confetti Effect:** Celebratory UI on successful loan applications!
+
+ 
+
+
+
