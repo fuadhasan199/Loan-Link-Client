@@ -7,33 +7,39 @@ const AllLoans = () => {
     
     const[loans,setLoans]=useState([])
     const [loading,setLoading]=useState(true) 
+    const [searchTerm,setSearchTerm]=useState('')
+    const [sort,setSort]=useState("")
 
-    useEffect(()=>{ 
-      const fetchLoans=async()=>{
-         try{
-          const cachedData=localStorage.getItem('allloans') 
-          if(cachedData){
-             setLoans(JSON.parse(cachedData))
-             setLoading(false) 
-             return
-          } 
-          setLoading(true) 
-          const res=await axios.get(`https://loan-link-server-nine.vercel.app/availableloan`)
-          .then(res=>{
-             setLoans(res.data)
-             localStorage.setItem('allloans',JSON.stringify(res.data)) 
-             setLoading(false)
-          })
-         } 
-         catch(error){
-           console.log(error.message)
-           setLoading(false)
-         }
-       
-      } 
-      fetchLoans() 
+useEffect(() => {
+    const fetchLoans = async () => {
+        
+        if (!searchTerm && !sort) {
+            const cachedData = localStorage.getItem('allloans')
+            if (cachedData) {
+                setLoans(JSON.parse(cachedData));
+                setLoading(false)
+               
+            }
+        }
 
-    },[]) 
+        try {
+         
+            const res = await axios.get(`https://loan-link-server-nine.vercel.app/availableloan?search=${searchTerm}&sort=${sort}`);
+            setLoans(res.data)
+
+           
+            if (!searchTerm && !sort) {
+                localStorage.setItem('allloans', JSON.stringify(res.data))
+            }
+        } catch (error) {
+            console.log("Error fetching data:", error)
+        } finally {
+            setLoading(false)
+        }
+    };
+
+    fetchLoans()
+}, [searchTerm, sort])
 
   if(loading){ 
      return <div className="flex justify-center items-center min-h-screen"> 
@@ -49,9 +55,11 @@ const AllLoans = () => {
             
 
 
-   {/*  Search  */} 
+   {/*  Search ans sort */} 
 
-   <label className="input mt-5 justify-start  max-w-sm flex p-2">
+    <div className="flex justify-between  gap-3"> 
+      {/* search */}
+   <label className="input mt-3">
   <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <g
       strokeLinejoin="round"
@@ -64,13 +72,24 @@ const AllLoans = () => {
       <path d="m21 21-4.3-4.3"></path>
     </g>
   </svg>
-  <input type="search" required placeholder="Loan Search Here" />
-</label>
+  <input type="search" required placeholder="Loan Search Here" onChange={(e)=>setSearchTerm(e.target.value)} />
+</label> 
 
+ {/* sort */}
+   
+  <fieldset className="fieldset mt-2">
+    
+  <select defaultValue="Pick a browser" className="select"  onChange={(e)=>setSort(e.target.value)}>
+    
+   <option value="">Sort By (Default)</option>
+    <option value="asc">Low to High</option>
+    <option value="desc">High to Low</option>
+  </select>
+ 
+</fieldset>
 
-
-
-
+      
+      </div> 
 
 
     {/* card */}
@@ -92,7 +111,7 @@ const AllLoans = () => {
     </h2> 
      <div className="flex justify-between mb-2">
       <div className="text-sm font-semibold text-gray-600"> Category: {loan.category}</div> 
-       <div className="text-sm font-semibold text-gray-600">Interest: {loan.interest} months</div>
+       <div className="text-sm font-semibold text-gray-600">Interest: {loan.interest} </div>
      </div>
     <p>{loan.shortDesc}</p>
     <div className="card-actions justify-center mt-3">
