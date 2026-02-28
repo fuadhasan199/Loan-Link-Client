@@ -26,6 +26,7 @@ import About from './Extra-Components/About.jsx'
 import Contack from './Extra-Components/Contack.jsx'
 import Theme from './Extra-Components/Theme.jsx'
 import UpdateUser from './Dashboard/UpdateUser.jsx'
+import Error from './Extra-Components/Error.jsx'
 
 
 
@@ -35,13 +36,16 @@ import UpdateUser from './Dashboard/UpdateUser.jsx'
     
    {
     path:'/',
-    element:<Mainlayout></Mainlayout> ,children: [
+    element:<Mainlayout></Mainlayout> ,
+    
+    children: [
     
        {
         index:true, 
         element:<Home></Home>,
         
        } , 
+
        {
           path:'/all-loans',
           element: <AllLoans></AllLoans>,
@@ -127,12 +131,21 @@ import UpdateUser from './Dashboard/UpdateUser.jsx'
          {
           path:'Update-Users/:id',
           element:<UpdateUser></UpdateUser>
-         }
-        ]
+         } ,
+           
+        ]  
+         
+        
+     
        } 
+       
 
  
-    ]} 
+    ] } ,
+     {
+       path:"*",
+       element:<Error></Error>
+     }
    
   
  ]) 

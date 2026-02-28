@@ -25,9 +25,10 @@ const Navbar = () => {
           <NavLink to={'/dashboard'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>Dashboard</NavLink>
       </li> 
 
-         <li>
-          <NavLink to={'/use-Avatar'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>User Avatar</NavLink>
-      </li> 
+     <li>
+          <NavLink to={'/contact'} className={({isActive})=>isActive ? "text-primary font-bold":'text-base-content'}>Contact</NavLink> 
+
+         </li> 
         
         
         </>
